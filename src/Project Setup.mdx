@@ -1,0 +1,38 @@
+# Project set-up
+
+Follow this steps to initialize a svelte/sveltkit project with Copa Design System foundations
+
+Install [Svelte](https://svelte.dev/docs/introduction) / [Sveltekit](https://kit.svelte.dev/docs/introduction)
+```bash
+npm create svelte@latest my-app
+```
+
+Install [TailwindCSS](https://tailwindcss.com/docs/installation)
+```bash
+npx @svelte-add/tailwindcss@latest
+```
+
+Install [bits-UI](https://www.bits-ui.com/docs/getting-started)
+```bash
+npm install -D bits-ui
+
+```
+
+Install Copa Tailwind Presets
+```bash
+npm i -D cmds-tailwind-styles
+```
+
+Setup Tailwind Config File (./tailwind.config.js)
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+	presets: [require('cmds-tailwind-styles')],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	theme: {
+		extend: {}
+	},
+  ...
+};
+
+```

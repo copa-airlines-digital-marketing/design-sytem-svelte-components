@@ -4,6 +4,7 @@ export default create({
   base: 'dark',
   brandTitle: 'Copa Airlines Storybook',
   brandUrl: 'https://www.copaair.com',
+  brandImage: 'https://www.copaair.com/assets/Copa Logo White.svg',
   brandTarget: '_self',
   fontBase: 'Gilroy, sans-serif',
   fontCode: 'monospace',
@@ -13,4 +14,8 @@ export default create({
    // Text colors
    textColor: '#fff',
    textInverseColor: '#333',
+
+    // UI
+  appBg: '#001A66',
+  appBorderRadius: 0,
 });
