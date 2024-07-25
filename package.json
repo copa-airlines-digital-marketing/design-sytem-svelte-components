@@ -13,8 +13,11 @@
     "format": "prettier --write .",
     "test:integration": "playwright test",
     "test:unit": "vitest",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "concurrently 'npm:watch:*'",
+    "watch:tailwind": "npx tailwindcss -i ./src/app.css -o ./src/output.css --watch",
+    "build:tailwind": "npx tailwindcss -i ./src/app.css -o ./src/output.css --watch",
+    "watch:storybook": "storybook dev -p 6006",
+    "build-storybook": "npm run build:tailwind && storybook build"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
@@ -24,9 +27,11 @@
     "@storybook/addon-links": "^8.2.6",
     "@storybook/addon-svelte-csf": "^4.1.4",
     "@storybook/blocks": "^8.2.6",
+    "@storybook/manager-api": "^8.2.6",
     "@storybook/svelte": "^8.2.6",
     "@storybook/sveltekit": "^8.2.6",
     "@storybook/test": "^8.2.6",
+    "@storybook/theming": "^8.2.6",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
@@ -35,6 +40,7 @@
     "autoprefixer": "^10.4.19",
     "bits-ui": "^0.21.12",
     "cmds-tailwind-styles": "^1.2.0",
+    "concurrently": "^8.2.2",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-storybook": "^0.8.0",
