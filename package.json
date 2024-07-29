@@ -39,7 +39,7 @@
     "@types/eslint": "^9.6.0",
     "autoprefixer": "^10.4.19",
     "bits-ui": "^0.21.12",
-    "cmds-tailwind-styles": "^1.2.0",
+    "cmds-tailwind-styles": "^1.2.6",
     "concurrently": "^8.2.2",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
