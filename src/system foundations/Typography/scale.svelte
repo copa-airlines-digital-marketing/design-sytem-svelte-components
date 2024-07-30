@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { TypographyVariants } from '../../lib/components/ui/typography/variants';
-	import { Root as Base } from '../../lib/components/ui/typography/index';
+	import type { TypographyVariants } from './root.variants';
+	import { Root as Text } from './index';
 
 	export let sample: undefined | string = undefined;
 
@@ -21,7 +21,7 @@
 <ul>
 	{#each values as val}
 		<li class="my-grid-gutter">
-			<Base size={val}>{sample || val}</Base>
+			<Text size={val}>{sample ? `${val} - ${sample}` : val}</Text>
 		</li>
 	{/each}
 </ul>

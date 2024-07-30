@@ -1,12 +1,11 @@
 <script context="module" lang="ts">
-	import Base from './base.svelte';
+	import Base from './scale.svelte';
 
 	export const meta = {
-		title: 'Typography',
+		title: 'system foundations/Typography',
 		component: Base,
 		argTypes: {
-			sample: { control: { type: 'text' } },
-			class: { control: 'text' }
+			sample: { control: { type: 'text' } }
 		}
 	};
 </script>
@@ -19,4 +18,4 @@
 	<Base {...args} />
 </Template>
 
-<Story name="Scale" args={{}} />
+<Story id="scale" name="Typographic Scale" args={{}} />

@@ -1,5 +1,8 @@
 
-import { Story } from '@storybook/blocks';
+import { Meta, Story } from '@storybook/blocks';
+import *  as Scale from './typography.stories.svelte'
+
+<Meta of={Scale} />
 
 # Typography
 
@@ -21,3 +24,28 @@ For use in smaller text where readability is crucial. Also applies for long para
 ### Typographic scale
 
 All text styles are based on this typographic scale. The scale dictates **font sizes, line heights and character spacing**. The scale assumes a Base size of 16px and grows upward 6 values and downward 3 values. There’s a different scale for each breakpoint and values change accordingly (e.g. U6 in large is 76px, while in Xsmall is 36px).
+
+Include class `text-{name}` to your element to use on of the following scales. [Go to story]('./?path=/story/system-foundations-typography--scale&globals=viewport:iphone14promax') to view the scales on the different viewports
+
+<Story of={Scale.scale} />
+
+## Variants & Overrides
+
+### Typography variants
+
+#### Heading
+
+#### Display Text
+
+### Body Text Variants
+
+## Body Text styles overrides
+
+### Body Text
+
+### Captions
+
+### Overline
+
+## Links
+
