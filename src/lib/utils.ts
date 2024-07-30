@@ -1,38 +1,3 @@
-# Project set-up
-
-Follow this steps to initialize a svelte/sveltkit project with Copa Design System foundations
-
-Install [Svelte](https://svelte.dev/docs/introduction) / [Sveltekit](https://kit.svelte.dev/docs/introduction)
-```bash
-npm create svelte@latest my-app
-```
-
-Install [TailwindCSS](https://tailwindcss.com/docs/installation)
-```bash
-npx @svelte-add/tailwindcss@latest
-```
-
-Install [bits-UI](https://www.bits-ui.com/docs/getting-started), Copa TailwindCSS presets, clx and tailwind-merge
-```bash
-npm install -D bits-ui cmds-tailwind-styles clx tailwind-merge
-```
-
-Setup Tailwind Config File (./tailwind.config.js)
-```js
-/** @type {import('tailwindcss').Config} */
-export default {
-	presets: [require('cmds-tailwind-styles')],
-	content: ['./src/**/*.{html,js,svelte,ts}'],
-	theme: {
-		extend: {}
-	},
-  ...
-};
-```
-
-Setup src/lib/utils.js|ts file\
-In case of JS file, types are not required
-```js
 import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 import { cubicOut } from "svelte/easing";
@@ -93,4 +58,4 @@ export function flyAndScale(
 		},
 		easing: cubicOut,
 	};
-```
+}
