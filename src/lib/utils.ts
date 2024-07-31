@@ -2,10 +2,22 @@ import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 import { cubicOut } from "svelte/easing";
 import type { TransitionConfig } from "svelte/transition";
-import { twMerge } from "tailwind-merge";
+import { extendTailwindMerge, twMerge } from "tailwind-merge";
+import { default as Preset } from 'cmds-tailwind-styles';
+import { default as TailwindConfig } from 'tailwindcss/defaultTheme';
+
+const customTwMerge = extendTailwindMerge({
+  extend: {
+    classGroups: {
+      'font-size': [{text:[...Object.keys(Preset.theme.extend.fontSize), ...Object.keys(TailwindConfig.fontSize)]}],
+      'font-family': [{font:[...Object.keys(Preset.theme.extend.fontFamily), ...Object.keys(TailwindConfig.fontFamily)]}],
+      'text-color': [{text:[...Object.keys(Preset.theme.extend.colors)]}]
+    }
+  }
+})
 
 export function cn(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs));
+	return customTwMerge(clsx(inputs));
 }
 
 type FlyAndScaleParams = {

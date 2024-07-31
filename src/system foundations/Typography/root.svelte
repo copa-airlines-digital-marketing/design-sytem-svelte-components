@@ -4,14 +4,17 @@
 
 	type $$Props = TypographyVariants;
 
-	let className: $$Props['class'] = undefined;
-	export let size: $$Props['size'] = 'body';
+	export let size: $$Props['size'] = 'b';
 	export let variant: $$Props['variant'] = 'body';
+	export let tag: $$Props['tag'] = 'p';
+	let className: $$Props['class'] = undefined;
 	export { className as class };
 </script>
 
-<p class={cn(typographyVariants({ size, variant, className }))}>
-	{typographyVariants({ size: size, variant: variant })}
-	{variant}
+<svelte:element
+	this={tag}
+	class={cn(typographyVariants({ size, variant, className }))}
+	{...$$restProps}
+>
 	<slot />
-</p>
+</svelte:element>

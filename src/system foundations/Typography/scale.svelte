@@ -21,7 +21,7 @@
 <ul>
 	{#each values as val}
 		<li class="my-grid-gutter">
-			<Text size={val}>{sample ? `${val} - ${sample}` : val}</Text>
+			<Text tag="p" size={val}>{sample ? `${val} - ${sample}` : val}</Text>
 		</li>
 	{/each}
 </ul>

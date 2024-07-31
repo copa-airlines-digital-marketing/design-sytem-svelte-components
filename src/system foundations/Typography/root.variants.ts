@@ -1,8 +1,17 @@
 import type { HTMLAttributes } from 'svelte/elements';
-import { type VariantProps, tv } from "tailwind-variants";
+import { type VariantProps, tv, defaultConfig } from "tailwind-variants";
+import { default as Preset } from 'cmds-tailwind-styles';
+
+defaultConfig.twMergeConfig = {
+  classGroups: {
+    'font-size': [{text:Object.keys(Preset.theme.extend.fontSize)}],
+    'font-family': [{font:Object.keys(Preset.theme.extend.fontFamily)}],
+    'text-color': [{text:Object.keys(Preset.theme.extend.colors)}]
+  }
+}
 
 const typographyVariants = tv({
-  base: 'font-suisse font-normal text-u6',
+  base: 'text-b font-suisse font-normal',
   variants: {
     size: {
       u6: 'text-u6',
@@ -27,13 +36,13 @@ const typographyVariants = tv({
     },
     variant: {
       h1: 'text-u5 font-gilroy font-medium text-primary',
-      h2: 'text-u5 font-gilroy font-medium text-primary',
-      h3: 'text-u5 font-gilroy font-medium text-primary',
-      h4: 'text-u5 font-gilroy font-medium text-primary',
-      'display-big': 'text-u5 font-gilroy font-medium text-primary',
-      'display': 'text-u5 font-gilroy font-medium text-primary',
-      'display-small': 'text-u5 font-gilroy font-medium text-primary',
-      'display-tiny': 'text-u5 font-gilroy font-medium text-primary',
+      h2: 'text-u2 font-gilroy font-bold text-primary-dark',
+      h3: 'text-u1 font-gilroy font-bold text-grey-700',
+      h4: 'text-b font-gilroy font-bold text-grey-700',
+      'display-big': 'text-u6 font-gilroy font-bold text-primary',
+      'display': 'text-u4 font-gilroy font-bold text-primary',
+      'display-small': 'text-u2 font-gilroy font-normal text-grey-700',
+      'display-tiny': 'text-u1 font-gilroy font-normal text-grey-700',
       'overline': 'text-grey-700',
       'overline-invert': 'text-common-white',
       'caption': 'text-grey-700',
@@ -58,10 +67,12 @@ const typographyVariants = tv({
 type Size = VariantProps<typeof typographyVariants>['size']
 type Variant = VariantProps<typeof typographyVariants>['variant']
 
+type TextTags = keyof Pick<HTMLElementTagNameMap, 'a' | 'abbr' | 'address' | 'bdo' | 'blockquote' | 'cite' | 'code' | 'dd' | 'dfn' | 'dt' | 'em' | 'figcaption' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'i' | 'label' | 'li' | 'kbd' | 'output' | 'p' | 'pre' | 'q' | 'samp' | 'small' | 'span' | 'strong' | 'sub' | 'sup' | 'td' | 'time' | 'tr' | 'var'  >
 
-type Props = HTMLAttributes<HTMLParagraphElement> & {
-  size?: Size
-  variant?: Variant
+type Props = HTMLAttributes<HTMLElementTagNameMap[TextTags]> & {
+  size?: Size;
+  variant?: Variant;
+  tag?: TextTags
 }
 
 export {
