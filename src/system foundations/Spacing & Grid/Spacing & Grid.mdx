@@ -1,7 +1,68 @@
+import { Canvas, Story } from '@storybook/blocks';
+import *  as Containers from './container.stories.svelte'
+import *  as Grids from './grid.stories.svelte'
+import *  as VSpacing from './spacing.stories.svelte'
+
+
 # Spacing & Grid
 
 ## Container
- 
+
+Copa container can be used with these classes
+
+```html
+<div class="container mx-auto">Regular container</div>
+```
+```html
+<div class="container-grid">Grid container</div>
+```
+The main difference between both is the ability to use the full width of the viewport.
+
+The regular container is just a block element
+
+The grid container is a grid element with 3 columns, the second column is where you should place the main content.
+
+Both containers have the minium x-axis margin required to prevent the element from touching the container element sides.
+
+<Canvas of={Containers.regular} sourceState='none' />
+
 ## Grid
 
-## Spacing
+To use the default CM grid layout follow these steps:
+
+1. Create the file using CTRL+N in the app root directory
+
+```bash
+/src/lib/components/foundations/grid/index.ts
+```
+
+2. Copy the file content
+
+```ts
+import { tv } from "tailwind-variants";
+
+export const getGridContainerClasses = () => 'grid grid-cols-12 gap-grid-gutter'
+
+export const getGridItemVariant = tv({
+  base: 'col-span-full',
+  variants: {
+    distributions: {
+      full: '',
+      half: 'sm:col-span-6',
+      four: 'md:col-span-4',
+      third: 'md:col-span-3',
+      '4 / 8': 'md:odd:col-span-4 md:even:col-span-8',
+      '8 / 4': 'md:odd:col-span-8 md:even:col-span-4'
+    }
+  }
+});
+```
+3. Import the functions where required
+
+<Canvas of={Grids.grid} sourceState='none' />
+
+## Vertical Spacing
+
+Copa's spacing naming sufixes that can be used with TailwindCSS spacing classes
+
+<Canvas of={VSpacing.vSpacing} sourceState='none' />
