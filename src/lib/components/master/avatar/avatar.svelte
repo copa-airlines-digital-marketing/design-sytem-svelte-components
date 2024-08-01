@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { cn } from "$lib/utils";
-
-
+	import { cn } from '$lib/utils';
 </script>
 
-<span class={cn('block rounde')}></span>
+<span class={cn('rounde block')}></span>
