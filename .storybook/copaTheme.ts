@@ -24,7 +24,7 @@ export default create({
 
   // Text colors
   textColor: '#666',
-  textInverseColor: '#ffffff',
+  textInverseColor: '#333',
 
   // Form colors
   inputBg: '#fff',

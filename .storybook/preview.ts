@@ -33,6 +33,9 @@ const preview: Preview = {
         },
       ],
     },
+    docs: {
+      toc: true,
+    },
     viewport: {
       viewports: {
         'xs': {name: 'Extra Small', styles: { width: '320px', height: '568px'}, type: 'mobile'},

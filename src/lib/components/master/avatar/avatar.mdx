@@ -1,0 +1,54 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/blocks';
+import * as AvatarStory from './avatar.stories.svelte'
+import AvatarIndex from './index.ts?raw'
+import AvatarRoot from './avatar.svelte?raw'
+import AvatarImage from './avatar-image.svelte?raw'
+import AvatarFallback from './avatar-fallback.svelte?raw'
+
+<Meta of={AvatarStory} name='Docs' />
+
+[Copa's Design System 2.0](https://www.figma.com/files/1061358732568113399/project/46270672) / [Master Components](https://www.figma.com/design/ZBfYIW0LOwlwur6XVq1yL5/Master-Components?m=auto&t=xueNH50niNVACOvu-6)
+
+# Avatar
+
+* [Dependencies](#Dependencies)
+* [Setup](#Setup)
+
+
+<Canvas of={AvatarStory.avatar} />
+<Controls />
+
+## Dependencies
+
+none
+
+## Setup
+
+Create the files with its content
+
+```bash
+src/lib/components/master/avatar/index.ts
+```
+<Source dark code={AvatarIndex} language='typescript'>
+</Source>
+
+
+```bash
+src/lib/components/master/avatar/avatar.svelte
+```
+<Source dark code={AvatarRoot} language='html'>
+</Source>
+
+```bash
+src/lib/components/master/avatar/avatar-image.svelte
+```
+<Source dark code={AvatarImage} language='html'>
+</Source>
+
+```bash
+src/lib/components/master/avatar/avatar-fallback.svelte
+```
+<Source dark code={AvatarFallback} language='html'>
+</Source>
+
+
