@@ -1,8 +1,8 @@
-import { Canvas, Story } from '@storybook/blocks';
+import { Canvas, Story, Source } from '@storybook/blocks';
 import *  as Containers from './container.stories.svelte'
 import *  as Grids from './grid.stories.svelte'
 import *  as VSpacing from './spacing.stories.svelte'
-
+import GridCode from '../../lib/components/foundations/grid/index.ts?raw'
 
 # Spacing & Grid
 
@@ -33,30 +33,13 @@ To use the default CM grid layout follow these steps:
 1. Create the file using CTRL+N in the app root directory
 
 ```bash
-/src/lib/components/foundations/grid/index.ts
+src/lib/components/foundations/grid/index.ts
 ```
 
 2. Copy the file content
 
-```ts
-import { tv } from "tailwind-variants";
+<Source dark code={GridCode} language='typescript' />
 
-export const getGridContainerClasses = () => 'grid grid-cols-12 gap-grid-gutter'
-
-export const getGridItemVariant = tv({
-  base: 'col-span-full',
-  variants: {
-    distributions: {
-      full: '',
-      half: 'sm:col-span-6',
-      four: 'md:col-span-4',
-      third: 'md:col-span-3',
-      '4 / 8': 'md:odd:col-span-4 md:even:col-span-8',
-      '8 / 4': 'md:odd:col-span-8 md:even:col-span-4'
-    }
-  }
-});
-```
 3. Import the functions where required
 
 <Canvas of={Grids.grid} sourceState='none' />
