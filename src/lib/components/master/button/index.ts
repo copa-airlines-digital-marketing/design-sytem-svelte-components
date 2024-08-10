@@ -2,7 +2,7 @@ import { type VariantProps, tv } from "tailwind-variants";
 import type { Button as ButtonPrimitive } from "bits-ui";
 
 const buttonVariants = tv({
-  base: "font-suisse font-medium min-w-[4.563rem] max-h-[5.5rem] flex items-center text-center",
+  base: "font-suisse font-medium min-w-[4.563rem] max-h-[5rem] flex items-center justify-center text-center outline-offset-4 outline-2 border active:outline focus:outline disabled:cursor-not-allowed disabled:outline-0",
 	variants: {
     size: {
       slim: 'px-4 py-2 gap-1 rounded-3xl text-d3 *:max-h-4', 
@@ -12,30 +12,26 @@ const buttonVariants = tv({
       'fancy-big': 'px-4 py-[0.625rem] rounded-[2.5rem] gap-2 text-d1 *:max-h-10',
       'fancy-small': 'px-4 py-1 rounded-[2.5rem] gap-2 text-d1 *:max-h-8'
 		},
-		type: {
-      'solid-primary-main': 'bg-primary text-common-white',
-      'solid-primary-light': 'bg-primary-light text-common-white',
-      'outline-primary-main': 'text-primary',
-      'outline-invert': 'text-common-white',
+		variant: {
+      'solid-primary-main': 'bg-primary text-common-white outline-primary border-primary hover:bg-primary-ultradark active:bg-primary focus:bg-primary-ultradark disabled:text-grey-500 disabled:bg-grey-100',
+      'solid-primary-light': 'bg-primary-light text-common-white outline-primary-light border-primary-light hover:bg-primary-ultradark active:bg-primary-light focus:bg-primary-ultradark disabled:text-grey-500 disabled:bg-grey-100',
+      'outline-primary-main': 'text-primary outline-primary border-2 border-primary hover:bg-backgound-lightblue focus:bg-backgound-lightblue active:bg-primary-ultralight disabled:border-grey-500 disabled:text-grey-500 disabled:bg-grey-100',
+      'outline-invert': 'text-common-white border-common-white',
       'transparent-primary-main': 'text-primary'
 		},
-    disabled: {
-      true: ''
-    }
 	},
 	defaultVariants: {
-    type: "solid-primary-main",
+    variant: "solid-primary-main",
 		size: "default",
 	},
 });
 
-type Type = VariantProps<typeof buttonVariants>["type"];
+type Variant = VariantProps<typeof buttonVariants>["variant"];
 type Size = VariantProps<typeof buttonVariants>["size"];
 
 type Props = ButtonPrimitive.Props & {
-  type?: Type;
+  variant?: Variant;
 	size?: Size;
-  disabled?: boolean
 };
 
 type Events = ButtonPrimitive.Events;

@@ -10,7 +10,8 @@ const customTwMerge = extendTailwindMerge({
     classGroups: {
       'font-size': [{text:Object.keys(Preset.theme.extend.fontSize)}],
       'font-family': [{font:Object.keys(Preset.theme.extend.fontFamily)}],
-      'text-color': [{text:Object.keys(Preset.theme.extend.colors)}]
+      'text-color': [{text:Object.keys(Preset.theme.extend.colors)}],
+      'border-color': [{text:Object.keys(Preset.theme.extend.colors)}]
     }
   }
 })
