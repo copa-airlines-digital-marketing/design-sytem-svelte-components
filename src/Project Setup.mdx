@@ -1,3 +1,7 @@
+import { Canvas, Story, Source } from '@storybook/blocks';
+import TailwindFile from '../tailwind.config.js?raw'
+import UtilsFile from './lib/utils.ts?raw'
+
 # Project set-up
 
 Follow this steps to initialize a svelte/sveltkit project with Copa Design System foundations
@@ -14,102 +18,16 @@ npx @svelte-add/tailwindcss@latest
 
 Install [bits-UI](https://www.bits-ui.com/docs/getting-started), Copa TailwindCSS presets, clx, tailwind-merge, and [tailwind-variants](https://www.tailwind-variants.org/docs/getting-started)
 ```bash
-npm install -D bits-ui cmds-tailwind-styles clx tailwind-merge tailwind-variants
+npm install -D bits-ui cmds-tailwind-styles clsx tailwind-merge tailwind-variants
 ```
 
 Setup Tailwind Config File (./tailwind.config.js)
-```js
-/** @type {import('tailwindcss').Config} */
-export default {
-	presets: [require('cmds-tailwind-styles')],
-	content: ['./src/**/*.{html,js,svelte,ts}'],
-	theme: {
-		extend: {}
-	},
-  ...
-};
-```
+<Source dark code={TailwindFile} language='javascript' />
 
-Setup src/lib/utils.js|ts file\
-In case of JS file, types are not required
-
-Create the file
+Create the file (CTRL+N) or (CMD+N)
 
 ```bash
 src/lib/utils.ts
 ```
 Copy and paste the code
-```js
-import type { ClassValue } from "clsx";
-import { clsx } from "clsx";
-import { cubicOut } from "svelte/easing";
-import type { TransitionConfig } from "svelte/transition";
-import { extendTailwindMerge } from "tailwind-merge";
-import { default as Preset } from 'cmds-tailwind-styles';
-
-const customTwMerge = extendTailwindMerge({
-  extend: {
-    classGroups: {
-      'font-size': [{text:Object.keys(Preset.theme.extend.fontSize)}],
-      'font-family': [{font:Object.keys(Preset.theme.extend.fontFamily)}],
-      'text-color': [{text:Object.keys(Preset.theme.extend.colors)}]
-    }
-  }
-})
-
-export function cn(...inputs: ClassValue[]) {
-	return customTwMerge(clsx(inputs));
-}
-
-type FlyAndScaleParams = {
-	y?: number;
-	x?: number;
-	start?: number;
-	duration?: number;
-};
-
-export function styleToString(style: Record<string, number | string | undefined>): string {
-	return Object.keys(style).reduce((str, key) => {
-		if (style[key] === undefined) return str;
-		return `${str}${key}:${style[key]};`;
-	}, "");
-}
-
-export function flyAndScale(
-	node: Element,
-	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
-): TransitionConfig {
-	const style = getComputedStyle(node);
-	const transform = style.transform === "none" ? "" : style.transform;
-
-	const scaleConversion = (
-		valueA: number,
-		scaleA: [number, number],
-		scaleB: [number, number]
-	) => {
-		const [minA, maxA] = scaleA;
-		const [minB, maxB] = scaleB;
-
-		const percentage = (valueA - minA) / (maxA - minA);
-		const valueB = percentage * (maxB - minB) + minB;
-
-		return valueB;
-	};
-
-	return {
-		duration: params.duration ?? 200,
-		delay: 0,
-		css: (t) => {
-			const y = scaleConversion(t, [0, 1], [params.y ?? 5, 0]);
-			const x = scaleConversion(t, [0, 1], [params.x ?? 0, 0]);
-			const scale = scaleConversion(t, [0, 1], [params.start ?? 0.95, 1]);
-
-			return styleToString({
-				transform: `${transform} translate3d(${x}px, ${y}px, 0) scale(${scale})`,
-				opacity: t,
-			});
-		},
-		easing: cubicOut,
-	};
-}
-```
+<Source dark code={UtilsFile} language='typescript' />
