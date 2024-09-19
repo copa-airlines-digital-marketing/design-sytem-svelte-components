@@ -4,19 +4,39 @@ import { cubicOut } from "svelte/easing";
 import type { TransitionConfig } from "svelte/transition";
 import { extendTailwindMerge } from "tailwind-merge";
 import { default as Preset } from 'cmds-tailwind-styles';
+import { createTV } from "tailwind-variants";
 
-const customTwMerge = extendTailwindMerge({
+function flatObject(entry: [string, string | object]) {
+  const [key, value] = entry
+
+  if(typeof value === 'string')
+    return key === 'DEFAULT' ? null : key
+
+  return Object.entries(value).flatMap(flatObject).map(v => key + ( v ? '-'+v : '') )
+}
+
+const colors = Object.entries(Preset.theme.extend.colors).flatMap(flatObject)
+
+const cmTWMergeConfig = {
   extend: {
+    theme: {
+      colors: colors,
+      spacing: Object.keys(Preset.theme.extend.spacing)
+    },
     classGroups: {
+      'font-family': [{font:Object.keys(Preset.theme.extend.fontFamily)}], //this is good,
       'font-size': [{text:Object.keys(Preset.theme.extend.fontSize)}],
-      'font-family': [{font:Object.keys(Preset.theme.extend.fontFamily)}],
-      'text-color': [{text:Object.keys(Preset.theme.extend.colors)}],
-      'border-color': [{text:Object.keys(Preset.theme.extend.colors)}]
     }
   }
+} as const
+
+const customTwMerge = extendTailwindMerge(cmTWMergeConfig)
+
+const cmTailwindVariants = createTV({
+  twMergeConfig: cmTWMergeConfig
 })
 
-export function cn(...inputs: ClassValue[]) {
+function cn(...inputs: ClassValue[]) {
 	return customTwMerge(clsx(inputs));
 }
 
@@ -27,14 +47,14 @@ type FlyAndScaleParams = {
 	duration?: number;
 };
 
-export function styleToString(style: Record<string, number | string | undefined>): string {
+function styleToString(style: Record<string, number | string | undefined>): string {
 	return Object.keys(style).reduce((str, key) => {
 		if (style[key] === undefined) return str;
 		return `${str}${key}:${style[key]};`;
 	}, "");
 }
 
-export function flyAndScale(
+function flyAndScale(
 	node: Element,
 	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
 ): TransitionConfig {
@@ -70,4 +90,12 @@ export function flyAndScale(
 		},
 		easing: cubicOut,
 	};
+}
+
+export {
+  cn,
+  flyAndScale,
+  styleToString,
+  cmTailwindVariants,
+  customTwMerge,
 }
