@@ -1,0 +1,3 @@
+[submodule "tailwind-presets"]
+	path = tailwind-presets
+	url = https://github.com/copa-airlines-digital-marketing/tailwind-presets
