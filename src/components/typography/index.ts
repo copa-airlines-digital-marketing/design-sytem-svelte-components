@@ -1,5 +1,5 @@
 import { type VariantProps } from "tailwind-variants";
-import { tv, cn } from "..";
+import { tv, cn } from "../../lib";
 
 const typography = tv({
   base: 'text-b font-suisse font-normal',

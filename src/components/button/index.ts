@@ -1,6 +1,6 @@
 import { type VariantProps } from "tailwind-variants";
 import type { Button as ButtonPrimitive } from "bits-ui";
-import { tv } from "..";
+import { tv } from "../../lib";
 
 const buttonVariants = tv({
   base: "font-suisse font-medium min-w-[4.563rem] max-h-[5rem] flex items-center justify-center text-center outline-offset-4 outline-2 border active:outline focus:outline disabled:cursor-not-allowed disabled:outline-0",

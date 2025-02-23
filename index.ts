@@ -1,5 +1,5 @@
-import { cn, tm, tv, flyAndScale  } from './src'
-import { Button } from './src/button'
+import { cn, tm, tv, flyAndScale  } from './src/lib/index.js';
+import { Button } from './src/components/button/index.js'
 
 export {
   cn,

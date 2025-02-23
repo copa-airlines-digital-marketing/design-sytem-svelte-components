@@ -4,10 +4,10 @@ import { clsx } from "clsx";
 import { cubicOut } from "svelte/easing";
 import type { TransitionConfig } from "svelte/transition";
 import { extendTailwindMerge } from "tailwind-merge";
-import { default as Preset } from '../../tailwind-presets';
+import { default as Preset } from '../../tailwind-presets/index.js';
 import { createTV } from "tailwind-variants";
 
-function flatObject(entry: [string, string | object]) {
+function flatObject(entry: [string, string | object]): (string | null)[] {
   const [key, value] = entry
 
   if(typeof value === 'string')
