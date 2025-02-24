@@ -1,41 +1,42 @@
 // place files you want to import through the `$lib` alias in this folder.
-import type { ClassValue } from "clsx";
-import { clsx } from "clsx";
-import { cubicOut } from "svelte/easing";
-import type { TransitionConfig } from "svelte/transition";
-import { extendTailwindMerge } from "tailwind-merge";
-import { default as Preset } from '../../tailwind-presets/index.js';
-import { createTV } from "tailwind-variants";
+import type { ClassValue } from 'clsx';
+import { clsx } from 'clsx';
+import { cubicOut } from 'svelte/easing';
+import type { TransitionConfig } from 'svelte/transition';
+import { extendTailwindMerge } from 'tailwind-merge';
+import { default as Preset } from '../../tailwind-presets/dist/cmds-tailwind-styles.js';
+import { createTV } from 'tailwind-variants';
 
 function flatObject(entry: [string, string | object]): (string | null)[] {
-  const [key, value] = entry
+	const [key, value] = entry;
 
-  if(typeof value === 'string')
-    return key === 'DEFAULT' ? null : key
+	if (typeof value === 'string') return key === 'DEFAULT' ? null : key;
 
-  return Object.entries(value).flatMap(flatObject).map(v => key + ( v ? '-'+v : '') )
+	return Object.entries(value)
+		.flatMap(flatObject)
+		.map((v) => key + (v ? '-' + v : ''));
 }
 
-const colors = Object.entries(Preset.theme.extend.colors).flatMap(flatObject)
+const colors = Object.entries(Preset.theme.extend.colors).flatMap(flatObject);
 
 const cmTWMergeConfig = {
-  extend: {
-    theme: {
-      colors: colors,
-      spacing: Object.keys(Preset.theme.extend.spacing)
-    },
-    classGroups: {
-      'font-family': [{font:Object.keys(Preset.theme.extend.fontFamily)}], //this is good,
-      'font-size': [{text:Object.keys(Preset.theme.extend.fontSize)}],
-    }
-  }
-} as const
+	extend: {
+		theme: {
+			colors: colors,
+			spacing: Object.keys(Preset.theme.extend.spacing)
+		},
+		classGroups: {
+			'font-family': [{ font: Object.keys(Preset.theme.extend.fontFamily) }], //this is good,
+			'font-size': [{ text: Object.keys(Preset.theme.extend.fontSize) }]
+		}
+	}
+} as const;
 
-const tm = extendTailwindMerge(cmTWMergeConfig)
+const tm = extendTailwindMerge(cmTWMergeConfig);
 
 const tv = createTV({
-  twMergeConfig: cmTWMergeConfig
-})
+	twMergeConfig: cmTWMergeConfig
+});
 
 function cn(...inputs: ClassValue[]) {
 	return tm(clsx(inputs));
@@ -52,7 +53,7 @@ function styleToString(style: Record<string, number | string | undefined>): stri
 	return Object.keys(style).reduce((str, key) => {
 		if (style[key] === undefined) return str;
 		return `${str}${key}:${style[key]};`;
-	}, "");
+	}, '');
 }
 
 function flyAndScale(
@@ -60,13 +61,9 @@ function flyAndScale(
 	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
 ): TransitionConfig {
 	const style = getComputedStyle(node);
-	const transform = style.transform === "none" ? "" : style.transform;
+	const transform = style.transform === 'none' ? '' : style.transform;
 
-	const scaleConversion = (
-		valueA: number,
-		scaleA: [number, number],
-		scaleB: [number, number]
-	) => {
+	const scaleConversion = (valueA: number, scaleA: [number, number], scaleB: [number, number]) => {
 		const [minA, maxA] = scaleA;
 		const [minB, maxB] = scaleB;
 
@@ -86,19 +83,11 @@ function flyAndScale(
 
 			return styleToString({
 				transform: `${transform} translate3d(${x}px, ${y}px, 0) scale(${scale})`,
-				opacity: t,
+				opacity: t
 			});
 		},
-		easing: cubicOut,
+		easing: cubicOut
 	};
 }
 
-export {
-  cn,
-  flyAndScale,
-  styleToString,
-  tv,
-  tv as tailwindVariants,
-  tm,
-  tm as tailwindMerge,
-}
+export { cn, flyAndScale, styleToString, tv, tv as tailwindVariants, tm, tm as tailwindMerge };
