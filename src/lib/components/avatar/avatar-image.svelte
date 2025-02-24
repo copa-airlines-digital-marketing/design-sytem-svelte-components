@@ -1,0 +1,18 @@
+<script lang="ts">
+	import { cn } from '..';
+	import { Avatar as AvatarPrimitive } from 'bits-ui';
+
+	type $$Props = AvatarPrimitive.ImageProps;
+
+	let className: $$Props['class'] = undefined;
+	export let src: $$Props['src'] = undefined;
+	export let alt: $$Props['alt'] = undefined;
+	export { className as class };
+</script>
+
+<AvatarPrimitive.Image
+	{src}
+	{alt}
+	class={cn('h-full w-full rounded-full object-cover', className)}
+	{...$$restProps}
+/>
