@@ -2,6 +2,9 @@
 	import { Button } from '$lib/components/button/index.js';
 	import { Divider } from '$lib/components/divider/index.js';
 	import { Container } from '$lib/components/grid/index.js';
+	import Icon from '$lib/components/pill/icon.svelte';
+	import { Pill } from '$lib/components/pill/index.js';
+	import Text from '$lib/components/pill/text.svelte';
 	import { Heading, Caption, Body, Overline, Link } from '$lib/components/typography/index.js';
 </script>
 
@@ -27,4 +30,8 @@
 	<Button>I'm a button</Button>
 	<Heading tag="h3" variant="h3">Divider</Heading>
 	<Divider />
+	<Heading tag="h3" variant="h3">Pill</Heading>
+	<Pill let:Text class="bg-system-success">
+		<Text>On time</Text>
+	</Pill>
 </Container>

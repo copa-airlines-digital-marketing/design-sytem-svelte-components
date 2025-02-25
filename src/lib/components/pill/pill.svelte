@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { pillVariants, setPillContext, type PillProps } from './index.js';
+	import { Text, Icon, pillVariants, setPillContext, type PillProps } from './index.js';
 	import { cn } from '$lib/index.js';
 
 	type $$Props = PillProps;
@@ -11,13 +11,11 @@
 	export let thickness: $$Props['thickness'] = 'default';
 	export { className as class };
 
-	onMount(() => {
-		setPillContext(thickness);
-	});
+	setPillContext({ theme, thickness });
 </script>
 
 <div class={cn(pillVariants({ theme, outline }), className)}>
-	<slot />
+	<slot {Text} {Icon} />
 </div>
 
 <style>
