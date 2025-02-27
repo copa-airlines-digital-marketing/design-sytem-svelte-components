@@ -2,13 +2,12 @@
 	import { Button } from '$lib/components/button/index.js';
 	import { Divider } from '$lib/components/divider/index.js';
 	import { Container } from '$lib/components/grid/index.js';
-	import Icon from '$lib/components/pill/icon.svelte';
 	import { Pill } from '$lib/components/pill/index.js';
-	import Text from '$lib/components/pill/text.svelte';
 	import { Heading, Caption, Body, Overline, Link } from '$lib/components/typography/index.js';
+	import { Checkbox } from '$lib/components/checkbox/index.js';
 </script>
 
-<Container class="py-roomy bg-backgound-lightblue" type="grid">
+<Container class="py-roomy bg-backgound-paper" type="grid">
 	<Heading tag="h1" variant="h1">Copa Airlines Components</Heading>
 	<Caption>Some descripiton</Caption>
 	<Divider />
@@ -34,4 +33,10 @@
 	<Pill let:Text class="bg-system-success">
 		<Text>On time</Text>
 	</Pill>
+	<div>
+		<label for="yolo" class="flex items-center gap-2">
+			<Checkbox id="yolo" />
+			Hello world
+		</label>
+	</div>
 </Container>
