@@ -4,30 +4,57 @@ import { clsx } from 'clsx';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
 import { extendTailwindMerge } from 'tailwind-merge';
-import { default as Preset } from '../../tailwind-presets/dist/cmds-tailwind-styles.js';
 import { createTV } from 'tailwind-variants';
-
-function flatObject(entry: [string, string | object]): (string | null)[] {
-	const [key, value] = entry;
-
-	if (typeof value === 'string') return key === 'DEFAULT' ? null : key;
-
-	return Object.entries(value)
-		.flatMap(flatObject)
-		.map((v) => key + (v ? '-' + v : ''));
-}
-
-const colors = Object.entries(Preset.theme.extend.colors).flatMap(flatObject);
 
 const cmTWMergeConfig = {
 	extend: {
 		theme: {
-			colors: colors,
-			spacing: Object.keys(Preset.theme.extend.spacing)
+			colors: [
+				'primary',
+				'primary-light',
+				'primary-dark',
+				'primary-ultradark',
+				'primary-ultralight',
+				'primary-faded',
+				'secondary',
+				'secondary-faded',
+				'tertiary',
+				'background-lightblue',
+				'background-paper',
+				'alternative-pardo',
+				'alternative-gold',
+				'alternative-darkorange',
+				'alternative-lightorange',
+				'alternative-perfermemberblue',
+				'system-warning',
+				'system-warning-faded',
+				'system-error',
+				'system-error-faded',
+				'system-success',
+				'system-success-faded',
+				'grey-800',
+				'grey-700',
+				'grey-600',
+				'grey-500',
+				'grey-400',
+				'grey-300',
+				'grey-200',
+				'grey-100',
+				'grey-75',
+				'grey-50',
+				'common-black',
+				'common-white',
+				'status-member',
+				'status-silver',
+				'status-gold',
+				'status-platinum',
+				'status-presidential'
+			],
+			spacing: ['gutter', 'minimal', 'tiny', 'petit', 'normal', 'roomy', 'spacious', 'big', 'huge']
 		},
 		classGroups: {
-			'font-family': [{ font: Object.keys(Preset.theme.extend.fontFamily) }], //this is good,
-			'font-size': [{ text: Object.keys(Preset.theme.extend.fontSize) }]
+			'font-family': ['Gilroy', "Suisse Int\'l"],
+			'font-size': ['d3', 'd2', 'd1', 'b', 'u4', 'u1', 'u2', 'u3', 'u4', 'u5', 'u6']
 		}
 	}
 } as const;
