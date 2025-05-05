@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '$lib/index.js';
+	import { cn } from '../../index.js';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { getTypography, type BodyProps, type HTMLTextElements } from './index.js';
 

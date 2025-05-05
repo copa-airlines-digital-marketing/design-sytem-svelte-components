@@ -4,7 +4,7 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Writable } from 'svelte/store';
 	import Caption from '../typography/caption.svelte';
-	import { cn } from '$lib/index.js';
+	import { cn } from '../lib/index.js';
 
 	export let tag: keyof HTMLTextElements = 'span';
 

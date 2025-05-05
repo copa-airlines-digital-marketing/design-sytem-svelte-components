@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '$lib/index.js';
+	import { cn } from '../lib/index.js';
 	import { gridItemVariant, type ContainerItemProps } from './index.js';
 
 	type $$Props = ContainerItemProps;

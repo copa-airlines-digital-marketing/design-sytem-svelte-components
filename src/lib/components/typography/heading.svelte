@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '$lib/index.js';
+	import { cn } from '../../index.js';
 	import { getTypographyVariant, type HeadingProps } from './index.js';
 
 	type $$Props = HeadingProps;

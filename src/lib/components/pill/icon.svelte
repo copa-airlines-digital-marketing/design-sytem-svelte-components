@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '$lib/index.js';
+	import { cn } from '../lib/index.js';
 	import type { Writable } from 'svelte/store';
 	import { getPillContext, iconVariants, type PillBaseProps, type PillIconProps } from './index.js';
 

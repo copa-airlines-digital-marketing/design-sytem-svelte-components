@@ -1,4 +1,4 @@
-import { tv } from '$lib/index.js';
+import { tv } from '../lib/index.js';
 import type { HTMLAttributes } from 'svelte/elements';
 import type { VariantProps } from 'tailwind-variants';
 import Container from './container.svelte';

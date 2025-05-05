@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Text, Icon, pillVariants, setPillContext, type PillProps } from './index.js';
-	import { cn } from '$lib/index.js';
+	import { cn } from '../lib/index.js';
 
 	type $$Props = PillProps;
 

@@ -1,4 +1,4 @@
-import { tv } from '$lib/index.js';
+import { tv } from '../lib/index.js';
 import { getContext, setContext } from 'svelte';
 import type { HTMLAttributes } from 'svelte/elements';
 import { writable, type Writable } from 'svelte/store';

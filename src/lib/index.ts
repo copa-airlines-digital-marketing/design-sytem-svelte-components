@@ -1,4 +1,4 @@
-// place files you want to import through the `$lib` alias in this folder.
+// place files you want to import through the `../lib` alias in this folder.
 import type { ClassValue } from 'clsx';
 import { clsx } from 'clsx';
 import { cubicOut } from 'svelte/easing';
