@@ -50,12 +50,10 @@ const cmTWMergeConfig = {
 				'status-platinum',
 				'status-presidential'
 			],
-			spacing: ['gutter', 'minimal', 'tiny', 'petit', 'normal', 'roomy', 'spacious', 'big', 'huge']
+			spacing: ['gutter', 'minimal', 'tiny', 'petit', 'normal', 'roomy', 'spacious', 'big', 'huge'],
+			font: ['Gilroy', "Suisse Int\'l"],
+			text: ['d3', 'd2', 'd1', 'b', 'u4', 'u1', 'u2', 'u3', 'u4', 'u5', 'u6']
 		},
-		classGroups: {
-			'font-family': ['Gilroy', "Suisse Int\'l"],
-			'font-size': ['d3', 'd2', 'd1', 'b', 'u4', 'u1', 'u2', 'u3', 'u4', 'u5', 'u6']
-		}
 	}
 } as const;
 
