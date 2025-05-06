@@ -7,13 +7,13 @@ const buttonVariants = tv({
 	base: 'font-suisse font-medium min-w-[4.563rem] max-h-[5rem] flex items-center justify-center text-center outline-offset-4 outline-none outline-2 border active:outline-solid focus:outline-solid disabled:cursor-not-allowed disabled:outline-0',
 	variants: {
 		size: {
-			slim: 'px-4 py-2 gap-1 rounded-3xl text-d3 border *:max-h-4',
-			default: 'px-4 py-3 rounded-full gap-1 text-d1 border *:max-h-5',
-			large: 'px-6 py-4 rounded-full gap-1 text-b border *:max-h-6',
-			giant: 'px-8 py-6 gap-2 rounded-full text-2xl border *:max-h-8',
-			'fancy-big': 'px-4 py-3 rounded-full gap-2 text-d1 border *:max-h-10',
-			'fancy-small': 'px-4 py-1 rounded-full gap-2 text-d1 border *:max-h-8',
-			link: 'text-d3 sm:text-d1 md:text-b *:max-h-4 sm:*:max-h-5 md:*:max-h-6 outline-none min-w-max border-b border-b-transparent hover:border-b-current active:border-b-current focus:border-b-current'
+			slim: 'px-4 py-2 gap-1 rounded-3xl text-d3 *:max-h-4',
+			default: 'px-4 py-3 rounded-full gap-1 text-d1 *:max-h-5',
+			large: 'px-6 py-4 rounded-full gap-1 text-b *:max-h-6',
+			giant: 'px-8 py-6 gap-2 rounded-full text-2xl *:max-h-8',
+			'fancy-big': 'px-4 py-3 rounded-full gap-2 text-d1 *:max-h-10',
+			'fancy-small': 'px-4 py-1 rounded-full gap-2 text-d1  *:max-h-8',
+			link: 'text-d3 sm:text-d1 md:text-b *:max-h-4 sm:*:max-h-5 md:*:max-h-6 outline-none min-w-max border-0 border-b border-b-transparent hover:border-b-primary-light active:border-b-primary-light focus:border-b-primary-light hover:outline-none active:outline-none focus:outline-none'
 		},
 		variant: {
 			'solid-primary-main':
