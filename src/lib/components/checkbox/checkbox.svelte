@@ -12,7 +12,7 @@
 
 <CheckboxPrimitive.Root
 	class={cn(
-		'border rounded outline-none ring-primary-faded text-grey-50 bg-grey-50 broder-grey-500 transition-colors focus-visible:bg-backgound-lightblue data-[state=checked]:bg-primary data-[state=checked]:border-primary  data-[state=checked]:focus-visible:bg-primary hover:border-primary-ultradark focus-visible:ring-2 focus-visible:border-primary-ultradark active:bg-primary-ultradark active:border-primary-ultradark active:ring-2 disabled:cursor-not-allowed disabled:bg-grey-100 disabled:border-grey-300 disabled:ring-0',
+		'border rounded outline-none ring-primary-faded text-grey-50 bg-grey-50 broder-grey-500 transition-colors focus-visible:bg-background-lightblue data-[state=checked]:bg-primary data-[state=checked]:border-primary  data-[state=checked]:focus-visible:bg-primary hover:border-primary-ultradark focus-visible:ring-2 focus-visible:border-primary-ultradark active:bg-primary-ultradark active:border-primary-ultradark active:ring-2 disabled:cursor-not-allowed disabled:bg-grey-100 disabled:border-grey-300 disabled:ring-0',
 		className
 	)}
 	bind:checked

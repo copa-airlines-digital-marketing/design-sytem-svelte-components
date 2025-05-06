@@ -7,7 +7,7 @@
 	import { Checkbox } from '../lib/components/checkbox/index.js';
 </script>
 
-<Container class="py-roomy bg-backgound-paper" type="grid">
+<Container class="py-roomy bg-background-paper" type="grid">
 	<Heading tag="h1" variant="h1">Copa Airlines Components</Heading>
 	<Caption>Some descripiton</Caption>
 	<Divider />
