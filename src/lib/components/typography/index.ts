@@ -6,6 +6,7 @@ import Body from './body.svelte';
 import Caption from './caption.svelte';
 import Overline from './overline.svelte';
 import Link from './link.svelte';
+import { ClassValue } from 'clsx';
 
 const typography = tv({
 	base: 'text-b font-suisse font-normal mb-6',
@@ -102,12 +103,14 @@ type HeadingProps = HTMLAttributes<HTMLHeadingElement> & {
 		Variant,
 		'h1' | 'h2' | 'h3' | 'h4' | 'display-big' | 'display' | 'display-small' | 'display-tiny'
 	>;
+	customcn?: (...inputs: ClassValue[]) => string;
 };
 
 type BodyProps = {
 	tag?: keyof HTMLTextElements;
 	size?: keyof Pick<Size, 'body' | 'body-large' | 'body-small'>;
 	variant?: keyof Pick<Variant, 'body' | 'body-emphasis' | 'body-invert' | 'body-invert-emphasis'>;
+	customcn?: (...inputs: ClassValue[]) => string;
 };
 
 type CaptionProps = {
@@ -117,15 +120,18 @@ type CaptionProps = {
 		Variant,
 		'caption' | 'caption-secondary' | 'caption-invert' | 'caption-invert-secondary'
 	>;
+	customcn?: (...inputs: ClassValue[]) => string;
 };
 
 type OverlineProps = {
 	tag?: keyof HTMLTextElements;
 	size?: keyof Pick<Size, 'overline' | 'overline-small'>;
+	customcn?: (...inputs: ClassValue[]) => string;
 };
 
 type LinkProps = HTMLLinkAttributes & {
 	variant?: keyof Pick<Variant, 'link' | 'link-invert' | 'link-secondary'>;
+	customcn?: (...inputs: ClassValue[]) => string;
 };
 
 const getTypography = (size?: Size, variant?: Variant, className?: string) => {

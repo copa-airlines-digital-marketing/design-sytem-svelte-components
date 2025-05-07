@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '../../index.js';
+	import { cn as defaultcn } from '../../index.js';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { getTypography, type BodyProps, type HTMLTextElements } from './index.js';
 
@@ -10,7 +10,10 @@
 	let className: $$Props['class'] = undefined;
 	export let size: $$Props['size'] = 'body';
 	export let variant: $$Props['variant'] = 'body';
+	export let customcn: $$Props['customcn'] = undefined;
 	export { className as class };
+
+	let cn = customcn || defaultcn;
 </script>
 
 <svelte:element this={tag} class={cn(getTypography(size, variant), className)} {...$$restProps}>
