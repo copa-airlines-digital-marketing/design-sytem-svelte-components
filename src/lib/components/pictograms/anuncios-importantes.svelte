@@ -15,7 +15,7 @@
 <svg viewBox="0 0 72 72" class={cn(className)} xmlns="http://www.w3.org/2000/svg">
 	<path
 		d="M72 36C72 55.8823 55.8823 72 36 72C16.1177 72 0 55.8823 0 36C0 16.1177 16.1177 0 36 0C55.8823 0 72 16.1177 72 36Z"
-		class:fill-background-lightblue={style === 'background'}
+		class={style === 'background' ? 'fill-background-lightblue' : 'fill-common-white'}
 	/>
 	<path
 		d="M30.7861 17.2401C33.0876 13.1991 38.9126 13.1993 41.2138 17.2405L57.0869 45.1159C59.3646 49.1158 56.4759 54.0849 51.873 54.0849H20.1238C15.5207 54.0849 12.632 49.1154 14.9101 45.1155L30.7861 17.2401Z"
@@ -29,7 +29,7 @@
 	/>
 	<path
 		d="M37.5556 45.0328C37.5556 45.8922 36.8589 46.5889 35.9995 46.5889C35.1401 46.5889 34.4434 45.8922 34.4434 45.0328C34.4434 44.1734 35.1401 43.4767 35.9995 43.4767C36.8589 43.4767 37.5556 44.1734 37.5556 45.0328Z"
-		class:fill-secondary={style !== 'monochrome'}
+		class={style !== 'monochrome' ? 'fill-secondary' : 'fill-common-white'}
 	/>
 	<path
 		fill-rule="evenodd"
@@ -39,7 +39,7 @@
 	/>
 	<path
 		d="M33.5603 27.3924C33.4767 25.9882 34.593 24.8035 35.9998 24.8035C37.4065 24.8035 38.5228 25.9882 38.4392 27.3924L37.8315 37.6013C37.7738 38.5707 36.9709 39.3273 35.9998 39.3273C35.0287 39.3273 34.2257 38.5707 34.168 37.6013L33.5603 27.3924Z"
-		class:fill-secondary={style !== 'monochrome'}
+		class={style !== 'monochrome' ? 'fill-secondary' : 'fill-common-white'}
 	/>
 	<path
 		fill-rule="evenodd"

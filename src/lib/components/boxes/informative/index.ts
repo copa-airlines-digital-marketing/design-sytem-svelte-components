@@ -10,22 +10,22 @@ import Title from './title.svelte';
 import Description from './description.svelte';
 
 const informativeBoxVariant = tv({
-	base: 'p-4 rounded-2xl min-w-67 max-h-64 grid border border-grey-300',
+	base: 'p-4 rounded-2xl max-h-64 grid border border-grey-300',
 	variants: {
 		orientation: {
-			horizontal: "[grid-template-areas:'head_title''head_description']",
-			vertical: "[grid-template-areas:'head''title''description']"
+			horizontal: "[grid-template-areas:'head_title''head_description'] min-w-106",
+			vertical: "[grid-template-areas:'head''title''description'] min-w-67"
 		},
 		alignment: {
-			left: 'justify-start text-left',
-			center: 'justify-center text-center',
-			right: 'justify-right text-right'
+			left: 'justify-items-start text-left',
+			center: 'justify-items-center text-center',
+			right: 'justify-items-right text-right'
 		}
 	}
 });
 
 const InformativeBoxIconVariant = tv({
-	base: '[grid-area:head] block',
+	base: '[grid-area:head] block mb-4',
 	variants: {
 		size: {
 			tiny: 'size-10',
@@ -37,7 +37,7 @@ const InformativeBoxIconVariant = tv({
 });
 
 const InformativeBoxImageVariant = tv({
-	base: '[grid-area:head] block',
+	base: '[grid-area:head] block mb-4',
 	variants: {
 		aspect: {
 			'16:9': 'aspect-video',
@@ -51,7 +51,7 @@ const InformativeBoxImageVariant = tv({
 });
 
 const InformativeBoxTitleVariant = tv({
-	base: '[grid-area:title]',
+	base: '[grid-area:title] mt-0 mb-2',
 	variants: {
 		theme: {
 			normal: 'text-primary',
@@ -61,7 +61,7 @@ const InformativeBoxTitleVariant = tv({
 });
 
 const InformativeBoxDescriptionVariant = tv({
-	base: '[grid-area:description]',
+	base: '[grid-area:description] my-0',
 	variants: {
 		theme: {
 			normal: 'text-grey-600',
