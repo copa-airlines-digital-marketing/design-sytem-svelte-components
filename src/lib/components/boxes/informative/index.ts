@@ -10,7 +10,7 @@ import Title from './title.svelte';
 import Description from './description.svelte';
 
 const informativeBoxVariant = tv({
-	base: 'p-4 rounded-2xl max-h-64 grid border border-grey-300',
+	base: 'p-4 rounded-2xl max-h-64 grid border border-grey-300 content-start',
 	variants: {
 		orientation: {
 			horizontal: "[grid-template-areas:'head_title''head_description'] min-w-106",
