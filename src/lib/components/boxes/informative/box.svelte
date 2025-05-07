@@ -27,6 +27,6 @@
 	};
 </script>
 
-<div class={cn(informativeBoxVariant({ alignment }), className)}>
+<div class={cn(informativeBoxVariant({ alignment, orientation }), className)}>
 	<slot {...children} />
 </div>

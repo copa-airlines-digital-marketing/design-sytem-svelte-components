@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { HTMLAttributes } from 'svelte/elements';
+	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn as defaultcn } from '../../../index.js';
-	import { ClassValue } from 'clsx';
+	import type { ClassValue } from 'clsx';
 	import { Box } from './index.js';
 
 	type $$Props = HTMLAttributes<HTMLDivElement> & {

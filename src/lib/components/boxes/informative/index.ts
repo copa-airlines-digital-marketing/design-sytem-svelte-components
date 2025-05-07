@@ -1,25 +1,25 @@
-import { HTMLAttributes } from 'svelte/elements';
+import type { HTMLAttributes } from 'svelte/elements';
+import type { VariantProps } from 'tailwind-variants';
+import type { ClassValue } from 'clsx';
 import { tv } from '../../../index.js';
-import { VariantProps } from 'tailwind-variants';
 import Container from './container.svelte';
 import Box from './box.svelte';
 import Icon from './icon.svelte';
 import Image from './image.svelte';
 import Title from './title.svelte';
 import Description from './description.svelte';
-import { ClassValue } from 'clsx';
 
 const informativeBoxVariant = tv({
-	base: 'p-4 rounded-2xl min-w-268 max-h-272 grid',
+	base: 'p-4 rounded-2xl min-w-67 max-h-64 grid border border-grey-300',
 	variants: {
 		orientation: {
 			horizontal: "[grid-template-areas:'head_title''head_description']",
 			vertical: "[grid-template-areas:'head''title''description']"
 		},
 		alignment: {
-			left: 'items-start text-left',
-			center: 'items-center text-center',
-			right: 'items-right text-right'
+			left: 'justify-start text-left',
+			center: 'justify-center text-center',
+			right: 'justify-right text-right'
 		}
 	}
 });
