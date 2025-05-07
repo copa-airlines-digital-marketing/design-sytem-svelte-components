@@ -1,4 +1,4 @@
-import { tv } from '../lib/index.js';
+import { tv } from '../../index.js';
 import type { VariantProps } from 'tailwind-variants';
 import type { HTMLAttributes } from 'svelte/elements';
 import Divider from './divider.svelte';

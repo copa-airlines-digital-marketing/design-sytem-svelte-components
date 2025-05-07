@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '../lib/index.js';
+	import { cn } from '../../index.js';
 	import { dividerVariants, type DividerProps } from './index.js';
 
 	type $$Props = DividerProps;
