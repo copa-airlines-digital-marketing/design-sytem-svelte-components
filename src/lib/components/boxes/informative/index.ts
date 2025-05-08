@@ -8,6 +8,7 @@ import Icon from './icon.svelte';
 import Image from './image.svelte';
 import Title from './title.svelte';
 import Description from './description.svelte';
+import { HTMLTextElements } from '../../typography/index.js';
 
 const informativeBoxVariant = tv({
 	base: 'p-4 rounded-2xl max-h-64 grid border border-grey-300 content-start',
@@ -94,6 +95,7 @@ type InformativeBoxTitleVariants = HTMLAttributes<HTMLHeadingElement> & {
 
 type InformativeBoxDescriptionVariants = HTMLAttributes<HTMLParagraphElement> & {
 	theme?: VariantProps<typeof InformativeBoxDescriptionVariant>['theme'];
+	tag?: keyof HTMLTextElements;
 	customcn?: (...inputs: ClassValue[]) => string;
 };
 

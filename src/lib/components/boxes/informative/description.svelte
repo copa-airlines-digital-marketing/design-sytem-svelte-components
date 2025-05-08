@@ -10,6 +10,7 @@
 
 	let className: $$Props['class'] = undefined;
 	export let theme: $$Props['theme'] = 'normal';
+	export let tag: $$Props['tag'] = 'p';
 	export let customcn: $$Props['customcn'] = undefined;
 	export { className as class };
 
@@ -17,10 +18,10 @@
 </script>
 
 <Body
-	tag="p"
 	size="body-large"
-	{customcn}
 	class={cn(InformativeBoxDescriptionVariant({ theme }), className)}
+	{customcn}
+	{tag}
 	{...$$restProps}
 >
 	<slot />

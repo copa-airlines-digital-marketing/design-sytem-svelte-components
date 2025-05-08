@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn as defaultcn } from '../../../index.js';
-	import { InformativeBoxIconVariant, InformativeBoxIconVariants } from './index.js';
+	import { InformativeBoxIconVariant, type InformativeBoxIconVariants } from './index.js';
 
 	type $$Props = InformativeBoxIconVariants;
 

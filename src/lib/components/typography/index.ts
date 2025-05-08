@@ -82,6 +82,8 @@ type HTMLTextElements = Pick<
 	| 'q'
 	| 'code'
 	| 'pre'
+	| 'ol'
+	| 'ul'
 	| 'li'
 	| 'dt'
 	| 'dd'
