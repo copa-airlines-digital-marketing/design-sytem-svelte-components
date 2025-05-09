@@ -3,7 +3,7 @@ import { type VariantProps } from 'tailwind-variants';
 import { tv } from '../index.js';
 
 export const getAvatarVariants = tv({
-	base: 'rounded-full overflow-hidden font-gilroy font-bold uppercase text-b text-primary border border-primary-ultralight p-0.5',
+	base: 'rounded-full overflow-hidden font-heading font-bold uppercase text-b text-primary border border-primary-ultralight p-0.5',
 	variants: {
 		size: {
 			tiny: 'size-8 font-semibold text-d2',

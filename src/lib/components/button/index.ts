@@ -4,7 +4,7 @@ import { tv } from '../../index.js';
 import { ClassValue } from 'clsx';
 
 const buttonVariants = tv({
-	base: 'font-suisse font-medium min-w-[4.563rem] max-h-[5rem] flex items-center justify-center text-center outline-offset-4 outline-none outline-2 border active:outline-solid focus:outline-solid disabled:cursor-not-allowed disabled:outline-0',
+	base: 'font-body font-medium min-w-[4.563rem] max-h-[5rem] flex items-center justify-center text-center outline-offset-4 outline-none outline-2 border active:outline-solid focus:outline-solid disabled:cursor-not-allowed disabled:outline-0 select-none',
 	variants: {
 		size: {
 			slim: 'px-4 py-2 gap-1 rounded-3xl text-d3 *:max-h-4',

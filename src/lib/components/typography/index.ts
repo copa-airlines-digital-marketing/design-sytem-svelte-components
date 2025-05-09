@@ -9,7 +9,7 @@ import Link from './link.svelte';
 import { ClassValue } from 'clsx';
 
 const typography = tv({
-	base: 'text-b font-suisse font-normal mb-6',
+	base: 'text-b font-body font-normal mb-6',
 	variants: {
 		size: {
 			u6: 'text-u6',
@@ -33,14 +33,14 @@ const typography = tv({
 			'overline-small': 'text-d1'
 		},
 		variant: {
-			h1: 'text-u5 font-gilroy font-medium text-primary mt-4 mb-8',
-			h2: 'text-u2 font-gilroy font-bold text-primary-dark mt-4 mb-6',
-			h3: 'text-u1 font-gilroy font-bold text-grey-700 mt-4 mb-4',
-			h4: 'text-b font-gilroy font-bold text-grey-700 mt-4 mb-4',
-			'display-big': 'text-u6 font-gilroy font-bold text-primary',
-			display: 'text-u4 font-gilroy font-bold text-primary',
-			'display-small': 'text-u2 font-gilroy font-normal text-grey-700',
-			'display-tiny': 'text-u1 font-gilroy font-normal text-grey-700',
+			h1: 'text-u5 font-heading font-medium text-primary mt-4 mb-8',
+			h2: 'text-u2 font-heading font-bold text-primary-dark mt-4 mb-6',
+			h3: 'text-u1 font-heading font-bold text-grey-700 mt-4 mb-4',
+			h4: 'text-b font-heading font-bold text-grey-700 mt-4 mb-4',
+			'display-big': 'text-u6 font-heading font-bold text-primary',
+			display: 'text-u4 font-heading font-bold text-primary',
+			'display-small': 'text-u2 font-heading font-normal text-grey-700',
+			'display-tiny': 'text-u1 font-heading font-normal text-grey-700',
 			overline: 'text-grey-700',
 			'overline-invert': 'text-common-white',
 			caption: 'text-grey-700',

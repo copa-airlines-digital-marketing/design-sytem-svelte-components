@@ -51,7 +51,7 @@ const cmTWMergeConfig = {
 				'status-presidential'
 			],
 			spacing: ['gutter', 'minimal', 'tiny', 'petit', 'normal', 'roomy', 'spacious', 'big', 'huge'],
-			font: ['Gilroy', "Suisse Int\'l"],
+			font: ['gilroy', "suisse", "heading", "body"],
 			text: ['d3', 'd2', 'd1', 'b', 'u4', 'u1', 'u2', 'u3', 'u4', 'u5', 'u6']
 		},
 	}
