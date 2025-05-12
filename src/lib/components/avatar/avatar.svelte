@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Avatar as AvatarPrimitive } from 'bits-ui';
-	import { cn } from '..';
-	import { getAvatarVariants, type Props } from '.';
+	import { cn as defaultcn } from '../../index.js';
+	import { getAvatarVariants, Image, Fallback, type Props } from './index.js';
 
 	type $$Props = Props;
 
@@ -9,7 +9,10 @@
 	export let delayMs: $$Props['delayMs'] = 0;
 	export let size: $$Props['size'] = 'normal';
 	export let stroke: $$Props['stroke'] = true;
+	export let customcn: $$Props['customcn'] = undefined;
 	export { className as class };
+
+	const cn = customcn || defaultcn;
 </script>
 
 <AvatarPrimitive.Root
@@ -17,5 +20,5 @@
 	class={cn(getAvatarVariants({ size, stroke, className }))}
 	{...$$restProps}
 >
-	<slot />
+	<slot {Image} {Fallback} />
 </AvatarPrimitive.Root>
