@@ -12,6 +12,6 @@
 	const cn = customcn || defaultcn;
 </script>
 
-<span class={cn(getTypographyVariant(variant), '[grid-area:title]', className)}>
+<span class={cn(getTypographyVariant(variant), 'text-primary [grid-area:title]', className)}>
 	<slot />
 </span>

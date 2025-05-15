@@ -11,7 +11,7 @@
 	} from './index.js';
 	import { Carrot } from '../../icon/index.js';
 
-	export type Props = AccordionPrimitive.ContentProps & AccordionTriggerProps;
+	type Props = AccordionPrimitive.ContentProps & AccordionTriggerProps;
 
 	let className: Props['class'] = undefined;
 	export let separator: Props['separator-position'] = 'top';
@@ -31,7 +31,7 @@
 <AccordionPrimitive.Trigger
 	class={cn(
 		AccordionTriggerVariant({ 'separator-position': separator }),
-		"grid p-6 gap-1 [grid-template-areas:'icon_title_label_cta_carrot'] grid-cols-[auto_auto_1fr_auto_auto]",
+		"grid w-full items-center border-grey-200 p-6 gap-1 [grid-template-areas:'icon_title_label_cta_carrot'] grid-cols-[auto_auto_1fr_auto_auto]",
 		className
 	)}
 	{...$$restProps}
