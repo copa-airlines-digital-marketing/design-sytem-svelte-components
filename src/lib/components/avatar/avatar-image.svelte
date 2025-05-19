@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ClassValue } from 'clsx';
+	import type { ClassValue } from 'clsx';
 	import { cn as defaultcn } from '../../index.js';
 	import { Avatar as AvatarPrimitive } from 'bits-ui';
 

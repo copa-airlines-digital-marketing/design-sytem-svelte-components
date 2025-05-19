@@ -1,7 +1,7 @@
 import { type VariantProps } from 'tailwind-variants';
 import type { Button as ButtonPrimitive } from 'bits-ui';
 import { tv } from '../../index.js';
-import { ClassValue } from 'clsx';
+import type { ClassValue } from 'clsx';
 
 const buttonVariants = tv({
 	base: 'font-body font-medium min-w-[4.563rem] max-h-[5rem] flex items-center justify-center text-center outline-offset-4 outline-none outline-2 border active:outline-solid focus:outline-solid disabled:cursor-not-allowed disabled:outline-0 select-none',

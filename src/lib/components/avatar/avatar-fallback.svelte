@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Avatar as AvatarPrimitive } from 'bits-ui';
 	import { cn as defaultcn } from '../../index.js';
-	import { ClassValue } from 'clsx';
+	import type { ClassValue } from 'clsx';
 
 	type $$Props = AvatarPrimitive.FallbackProps & {
 		customcn?: (...inputs: ClassValue[]) => string;

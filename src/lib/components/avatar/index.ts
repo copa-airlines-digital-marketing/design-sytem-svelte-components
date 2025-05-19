@@ -1,7 +1,7 @@
 import type { Avatar as AvatarPrimitive } from 'bits-ui';
 import { type VariantProps } from 'tailwind-variants';
 import { tv } from '../../index.js';
-import { ClassValue } from 'clsx';
+import type { ClassValue } from 'clsx';
 import { default as Root } from './avatar.svelte';
 import { default as Image } from './avatar-image.svelte';
 import { default as Fallback } from './avatar-fallback.svelte';

@@ -6,7 +6,7 @@ import Body from './body.svelte';
 import Caption from './caption.svelte';
 import Overline from './overline.svelte';
 import Link from './link.svelte';
-import { ClassValue } from 'clsx';
+import type { ClassValue } from 'clsx';
 
 const typography = tv({
 	base: 'text-b font-body font-normal mb-6',
