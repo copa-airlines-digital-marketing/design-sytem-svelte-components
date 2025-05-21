@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { iconWithDirectionVariants, type iconWithDirection } from './index.js';
+	import { iconWithDirectionVariants, type IconWithDirection } from './index.js';
 	import { cn as defaultcn } from '../../index.js';
 
-	type $$Props = iconWithDirection;
+	type $$Props = IconWithDirection;
 
 	let className: $$Props['class'] = undefined;
 	export let direction: $$Props['direction'] = 'up';
