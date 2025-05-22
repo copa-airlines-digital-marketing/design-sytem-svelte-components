@@ -10,8 +10,10 @@ import Instagram from './social/instagram.svelte';
 import Tiktok from './social/tiktok.svelte';
 import X from './social/x.svelte';
 import Youtube from './social/youtube.svelte';
+import Whatsapp from './social/whatsapp.svelte';
+import NoIcon from './no-icon.svelte';
 
-const Social = { Email, Facebook, Instagram, Tiktok, X, Youtube };
+const Social = { Email, Facebook, Instagram, Tiktok, X, Youtube, Whatsapp };
 
 const iconWithDirectionVariants = tv({
 	variants: {
@@ -35,4 +37,4 @@ type IconWithDirection = HTMLAttributes<HTMLElement> & {
 
 export type { IconWithDirection, SingularIcon };
 
-export { iconWithDirectionVariants, Carrot, Globe, Phone, Social };
+export { iconWithDirectionVariants, NoIcon, Carrot, Globe, Phone, Social };
