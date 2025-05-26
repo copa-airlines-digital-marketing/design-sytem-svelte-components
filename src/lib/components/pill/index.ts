@@ -1,8 +1,9 @@
-import { tv } from '../lib/index.js';
-import { getContext, setContext } from 'svelte';
 import type { HTMLAttributes } from 'svelte/elements';
-import { writable, type Writable } from 'svelte/store';
 import type { VariantProps } from 'tailwind-variants';
+import type { ClassValue } from 'clsx';
+import { writable, type Writable } from 'svelte/store';
+import { tv } from '../../../lib/index.js';
+import { getContext, setContext } from 'svelte';
 import Pill from './pill.svelte';
 import PillText from './text.svelte';
 import PillIcon from './icon.svelte';
@@ -43,6 +44,7 @@ type PillBaseProps = {
 	theme?: Theme;
 	outline?: Outline;
 	thickness?: Thickness;
+	customcn?: (...inputs: ClassValue[]) => string;
 };
 
 type PillProps = HTMLAttributes<HTMLDivElement> & PillBaseProps;
@@ -51,6 +53,7 @@ type IconSide = VariantProps<typeof iconVariants>['side'];
 
 type PillIconProps = HTMLAttributes<HTMLSpanElement> & {
 	side?: IconSide;
+	customcn?: (...inputs: ClassValue[]) => string;
 };
 
 const setPillContext = (props: PillBaseProps) => {

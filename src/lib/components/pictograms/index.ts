@@ -3,6 +3,7 @@ import type { ClassValue, VariantProps } from 'tailwind-variants';
 import { tv } from '../../index.js';
 import AnunciosImportantes from './anuncios-importantes.svelte';
 import CheckIn from './check-in.svelte';
+import Conexion from './conexion.svelte';
 
 const pictogramVariants = tv({
 	variants: {
@@ -19,6 +20,10 @@ type Pictogam = HTMLAttributes<HTMLElement> & {
 	customcn?: (...inputs: ClassValue[]) => string;
 };
 
+const Tiquetes = {
+	Conexion
+};
+
 export type { Pictogam };
 
-export { pictogramVariants, AnunciosImportantes, CheckIn };
+export { pictogramVariants, AnunciosImportantes, CheckIn, Tiquetes };
