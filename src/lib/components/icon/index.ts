@@ -12,6 +12,14 @@ import X from './social/x.svelte';
 import Youtube from './social/youtube.svelte';
 import Whatsapp from './social/whatsapp.svelte';
 import NoIcon from './no-icon.svelte';
+import Time from './filled/time.svelte';
+import Ticket from './filled/ticket.svelte';
+import Close from './regular/close.svelte';
+import Check from './regular/check.svelte';
+
+const Regular = { Close, Check };
+
+const Filled = { Time, Ticket };
 
 const Social = { Email, Facebook, Instagram, Tiktok, X, Youtube, Whatsapp };
 
@@ -30,11 +38,16 @@ type SingularIcon = HTMLAttributes<HTMLElement> & {
 	customcn?: (...inputs: ClassValue[]) => string;
 };
 
+type FilledIcon = HTMLAttributes<HTMLElement> & {
+	customcn?: (...inputs: ClassValue[]) => string;
+	filled?: boolean;
+};
+
 type IconWithDirection = HTMLAttributes<HTMLElement> & {
 	direction?: VariantProps<typeof iconWithDirectionVariants>['direction'];
 	customcn?: (...inputs: ClassValue[]) => string;
 };
 
-export type { IconWithDirection, SingularIcon };
+export type { IconWithDirection, SingularIcon, FilledIcon };
 
-export { iconWithDirectionVariants, NoIcon, Carrot, Globe, Phone, Social };
+export { iconWithDirectionVariants, NoIcon, Carrot, Globe, Phone, Filled, Regular, Social };
