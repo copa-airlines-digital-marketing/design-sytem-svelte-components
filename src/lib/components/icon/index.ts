@@ -16,8 +16,11 @@ import Time from './filled/time.svelte';
 import Ticket from './filled/ticket.svelte';
 import Close from './regular/close.svelte';
 import Check from './regular/check.svelte';
+import Walk from './regular/walk.svelte';
+import Camera from './regular/camera.svelte';
+import History from './regular/history.svelte';
 
-const Regular = { Close, Check };
+const Regular = { Close, Check, Walk, Camera, History };
 
 const Filled = { Time, Ticket };
 
