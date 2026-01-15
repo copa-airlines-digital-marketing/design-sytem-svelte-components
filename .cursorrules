@@ -1,0 +1,22 @@
+# Project Context
+- Type: SvelteKit UI Component Library (Submodule)
+- Stack: Svelte 4, TypeScript, Vite, Tailwind CSS v4, Bits-UI.
+- Goal: To be consumed by parent projects as a git submodule.
+
+# CRITICAL RULES (Strict Enforcement)
+1. **NO ALIASES ($lib):** NEVER use `$lib`, `$app`, or `$env` imports inside component logic.
+   - **Reason:** This project is a submodule. Aliases break when the parent project compiles the code.
+   - **Action:** ALWAYS use RELATIVE paths (e.g., `../../components/Button.svelte` or `./utils`).
+
+2. **NO TOUCHING SUBMODULES:** Do not modify files inside `tailwind-presets` or other external submodules directly.
+
+# Strict Typing & Safety
+- **Public API (Exports):** All **EXPORTED** functions and components MUST have explicit return types.
+  - *Reason:* Prevents accidental API changes that could break parent projects.
+- **Internal Logic:** Private/Internal functions can rely on Type Inference to reduce noise.
+- **No Any:** `any` is strictly forbidden. Use `unknown` if necessary, but preferably proper types.
+
+# Documentation (JSDoc)
+- **Exported Members:** Mandatory JSDoc for all **exported** variables, functions, and components.
+  - Explain *what* it does and *param/return* details.
+- **Internal Members:** JSDoc is optional unless the logic is complex.

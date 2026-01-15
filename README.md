@@ -1,58 +1,155 @@
-# create-svelte
+# Design System Svelte Components
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Librería de componentes Svelte para el design system de Copa Airlines.
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+Esta es una librería SvelteKit que se consume como **submódulo Git** en proyectos padre. Contiene componentes reutilizables basados en Svelte 4, TypeScript, Tailwind CSS v4 y Bits-UI.
 
-## Creating a project
+## 📚 Documentación
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **[Guía de Estructura y Buenas Prácticas](docs/ESTRUCTURA-Y-GUIA.md)** - Cómo estructurar el código y seguir las mejores prácticas
+- **[Auditoría y Recomendaciones de Refactorización](docs/AUDITORIA-Y-REFACTORIZACION.md)** - Antipatrones identificados y recomendaciones de mejora
+- **[Actualizar Submodule](docs/ACTUALIZAR-SUBMODULE.md)** - Instrucciones para actualizar el submódulo `tailwind-presets`
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## 🚀 Inicio Rápido
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+### Prerrequisitos
 
-## Developing
+- Node.js >20.18.0
+- pnpm 10.4.1 (o superior)
+- Git
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
-
-## Building
-
-To build your library:
+### Instalación
 
 ```bash
-npm run package
+# Clonar el repositorio
+git clone <repository-url>
+cd design-sytem-svelte-components
+
+# Instalar dependencias
+pnpm install
+
+# Inicializar submódulos
+git submodule update --init --recursive
 ```
 
-To create a production version of your showcase app:
+### Desarrollo
 
 ```bash
-npm run build
+# Iniciar servidor de desarrollo (muestra showcase/preview)
+pnpm dev
+
+# O abrir en el navegador automáticamente
+pnpm dev -- --open
 ```
 
-You can preview the production build with `npm run preview`.
+**Nota:** Todo dentro de `src/lib` es parte de la librería (lo que se exporta). Todo dentro de `src/routes` es solo para showcase/preview y no se incluye en el build de la librería.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+### Actualizar Submódulo
 
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
+Si necesitas actualizar el submódulo `tailwind-presets` (por ejemplo, después de cambiar de SSH a HTTPS):
 
 ```bash
-npm publish
+# Ver instrucciones completas en docs/ACTUALIZAR-SUBMODULE.md
+git submodule sync
+git submodule update --init --recursive
 ```
+
+## 📦 Construcción
+
+### Construir la librería
+
+```bash
+pnpm package
+```
+
+Esto genera los archivos distribuibles en `dist/`.
+
+### Construir showcase/preview
+
+```bash
+pnpm build
+```
+
+### Preview de producción
+
+```bash
+pnpm preview
+```
+
+## 🧪 Testing
+
+```bash
+# Ejecutar todos los tests
+pnpm test
+
+# Solo tests de integración (Playwright)
+pnpm test:integration
+
+# Solo tests unitarios (Vitest)
+pnpm test:unit
+```
+
+## 🔍 Verificación y Linting
+
+```bash
+# Verificar tipos con svelte-check
+pnpm check
+
+# Verificar tipos en modo watch
+pnpm check:watch
+
+# Linting
+pnpm lint
+
+# Formatear código
+pnpm format
+```
+
+## 📖 Uso como Submódulo
+
+Este proyecto está diseñado para ser consumido como **submódulo Git** en otros proyectos.
+
+### En el proyecto padre:
+
+```bash
+# Agregar este repositorio como submódulo
+git submodule add <repository-url> path/to/submodule
+git submodule update --init --recursive
+```
+
+### Importar componentes:
+
+```typescript
+// En tu proyecto padre
+import { Button } from './path/to/submodule/index.js';
+import { Avatar } from './path/to/submodule/index.js';
+import { cn, tv } from './path/to/submodule/index.js';
+```
+
+**⚠️ IMPORTANTE:** No uses alias `$lib` en el código de esta librería. Siempre usa rutas relativas. Ver [Guía de Estructura](docs/ESTRUCTURA-Y-GUIA.md) para más detalles.
+
+## 🛠️ Tecnologías
+
+- **Svelte 4** - Framework de componentes
+- **TypeScript** - Tipado estático
+- **Tailwind CSS v4** - Estilos utilitarios
+- **Tailwind Variants** - Sistema de variantes de componentes
+- **Bits-UI** - Componentes primitivos accesibles
+- **Vite** - Build tool
+- **SvelteKit** - Framework base
+
+## 📝 Reglas Importantes
+
+1. **NO usar alias `$lib`, `$app`, `$env`** - Siempre usar rutas relativas
+2. **Tipado estricto** - Todas las funciones exportadas deben tener tipos explícitos
+3. **Documentación JSDoc** - Funciones y tipos exportados deben tener documentación
+4. **Tailwind Variants** - Usar `tv()` para definir variantes de componentes
+5. **No modificar submódulos directamente** - Ver [Guía de Estructura](docs/ESTRUCTURA-Y-GUIA.md)
+
+Ver [Guía de Estructura y Buenas Prácticas](docs/ESTRUCTURA-Y-GUIA.md) para más detalles.
+
+## 📚 Referencias
+
+- [SvelteKit Packaging](https://kit.svelte.dev/docs/packaging)
+- [Tailwind Variants](https://www.tailwind-variants.org/)
+- [Bits-UI](https://www.bits-ui.com/)

@@ -1,4 +1,5 @@
 {
+	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,
@@ -10,5 +11,7 @@
 		"strict": true,
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext"
-	}
+	},
+	"include": ["src/**/*", "vite.config.ts", "svelte.config.ts", "tsconfig.node.json", "index.ts"],
+	"exclude": ["node_modules", "dist", "build", ".svelte-kit", "tailwind-presets/**"]
 }

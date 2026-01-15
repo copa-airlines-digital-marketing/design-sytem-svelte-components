@@ -1,4 +1,4 @@
-import CMPresets from './tailwind-presets/dist/cmds-tailwind-styles';
+import CMPresets from './tailwind-presets/dist/cmds-tailwind-styles.js';
 
 /** @type {import('tailwindcss').Config} */
 export default {

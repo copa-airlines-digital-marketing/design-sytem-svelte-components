@@ -1,10 +1,16 @@
 <script lang="ts">
-	import { Button } from '../lib/components/button/index.js';
-	import { Divider } from '../lib/components/divider/index.js';
-	import { Container } from '../lib/components/grid/index.js';
-	import { Pill } from '../lib/components/pill/index.js';
-	import { Heading, Caption, Body, Overline, Link } from '../lib/components/typography/index.js';
-	import { Checkbox } from '../lib/components/checkbox/index.js';
+	import { Button } from '../lib/components/primitives/button/index.js';
+	import { Divider } from '../lib/components/layout/divider/index.js';
+	import { Container } from '../lib/components/layout/grid/index.js';
+	import { Pill } from '../lib/components/data-display/pill/index.js';
+	import {
+		Heading,
+		Caption,
+		Body,
+		Overline,
+		Link
+	} from '../lib/components/data-display/typography/index.js';
+	import { Checkbox } from '../lib/components/primitives/checkbox/index.js';
 </script>
 
 <Container class="py-roomy bg-background-paper" type="grid">
