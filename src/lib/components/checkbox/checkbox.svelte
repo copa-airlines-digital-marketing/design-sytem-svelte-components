@@ -3,6 +3,7 @@
 	import { cn } from '../../index.js';
 
 	type $$Props = CheckboxPrimitive.Props;
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Svelte compiler uses $$Events for typing
 	type $$Events = CheckboxPrimitive.Events;
 
 	let className: $$Props['class'] = undefined;

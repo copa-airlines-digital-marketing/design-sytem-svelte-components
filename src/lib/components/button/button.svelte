@@ -4,6 +4,7 @@
 	import { cn as basecn } from '../../index.js';
 
 	type $$Props = Props;
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Svelte compiler uses $$Events for typing
 	type $$Events = Events;
 
 	let className: $$Props['class'] = undefined;

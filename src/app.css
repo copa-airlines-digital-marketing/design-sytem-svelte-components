@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+/* Theme from submodule: when tailwind-presets exposes Tailwind 4 CSS, add:
+   @import '../tailwind-presets/dist/theme.css';
+   (or the path provided by the preset repo) */
