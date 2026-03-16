@@ -5,7 +5,7 @@
 		screen?: 'sm' | 'md' | 'lg';
 	};
 
-	export let screen: $$Props['screen'] = 'md';
+	let { screen = 'md', ...restProps }: $$Props = $props();
 
 	const getMediaQuery = (size: $$Props['screen']) => {
 		if (size === 'sm') return '(min-width: 600px)';
@@ -13,7 +13,7 @@
 		return '(min-width: 1367px)';
 	};
 
-	const media = getMediaQuery(screen);
+	const media = $derived(getMediaQuery(screen));
 </script>
 
-<source {media} {...$$restProps} />
+<source {media} {...restProps} />

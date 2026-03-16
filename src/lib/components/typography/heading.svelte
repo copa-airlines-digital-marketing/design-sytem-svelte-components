@@ -1,18 +1,26 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn as defaultcn } from '../../index.js';
 	import { getTypographyVariant, type HeadingProps } from './index.js';
 
-	type $$Props = HeadingProps;
+	type Props = HeadingProps &
+		HTMLAttributes<HTMLElement> & {
+			children?: Snippet;
+		};
 
-	let className: $$Props['class'] = undefined;
-	export let tag: $$Props['tag'] = 'h2';
-	export let variant: $$Props['variant'] = 'h2';
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let {
+		tag = 'h2',
+		variant = 'h2',
+		customcn,
+		class: className,
+		children,
+		...restProps
+	}: Props = $props();
 
-	let cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
-<svelte:element this={tag} class={cn(getTypographyVariant(variant), className)} {...$$restProps}>
-	<slot />
+<svelte:element this={tag} class={cn(getTypographyVariant(variant), className)} {...restProps}>
+	{@render children?.()}
 </svelte:element>

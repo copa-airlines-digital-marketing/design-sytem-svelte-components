@@ -3,7 +3,7 @@ import type { ClassValue } from 'clsx';
 import { clsx } from 'clsx';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
-import { extendTailwindMerge } from 'tailwind-merge';
+import { extendTailwindMerge, type ClassNameValue } from 'tailwind-merge';
 import { createTV } from 'tailwind-variants';
 
 const cmTWMergeConfig = {
@@ -51,9 +51,9 @@ const cmTWMergeConfig = {
 				'status-presidential'
 			],
 			spacing: ['gutter', 'minimal', 'tiny', 'petit', 'normal', 'roomy', 'spacious', 'big', 'huge'],
-			font: ['gilroy', "suisse", "heading", "body"],
+			font: ['gilroy', 'suisse', 'heading', 'body'],
 			text: ['d3', 'd2', 'd1', 'b', 'u4', 'u1', 'u2', 'u3', 'u4', 'u5', 'u6']
-		},
+		}
 	}
 } as const;
 
@@ -63,8 +63,8 @@ const tv = createTV({
 	twMergeConfig: cmTWMergeConfig
 });
 
-function cn(...inputs: ClassValue[]) {
-	return tm(clsx(inputs));
+function cn(...inputs: Array<ClassValue | ClassNameValue | null | undefined>): string {
+	return tm(clsx(inputs as ClassValue[]));
 }
 
 type FlyAndScaleParams = {

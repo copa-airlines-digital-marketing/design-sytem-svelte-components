@@ -4,12 +4,9 @@
 
 	type $$Props = Pictogam;
 
-	let className: $$Props['class'] = undefined;
-	export let style: $$Props['style'] = 'background';
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let { style = 'background', customcn, class: className }: $$Props = $props();
 
-	let cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
 <svg viewBox="0 0 72 72" class={cn(className)} xmlns="http://www.w3.org/2000/svg">

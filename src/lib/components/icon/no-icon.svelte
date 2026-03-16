@@ -4,11 +4,9 @@
 
 	type $$Props = SingularIcon;
 
-	let className: $$Props['class'] = undefined;
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let { customcn, class: className }: $$Props = $props();
 
-	let cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
 <svg viewBox="0 0 24 24" class={cn(className)} xmlns="http://www.w3.org/2000/svg">

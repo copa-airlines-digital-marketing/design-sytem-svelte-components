@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn as defaultcn } from '../../../index.js';
 	import { Body } from '../../typography/index.js';
 	import {
@@ -6,23 +8,29 @@
 		type InformativeBoxDescriptionVariants
 	} from './index.js';
 
-	type $$Props = InformativeBoxDescriptionVariants;
+	type Props = InformativeBoxDescriptionVariants & {
+		children?: Snippet;
+	};
 
-	let className: $$Props['class'] = undefined;
-	export let theme: $$Props['theme'] = 'normal';
-	export let tag: $$Props['tag'] = 'p';
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let {
+		theme = 'normal',
+		tag = 'p',
+		customcn,
+		class: className,
+		children,
+		...restProps
+	}: Props = $props();
 
-	let cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
+	const bodyProps = $derived(restProps as HTMLAttributes<HTMLElement>);
 </script>
 
 <Body
 	size="body-large"
 	class={cn(InformativeBoxDescriptionVariant({ theme }), className)}
-	{customcn}
+	customcn={cn}
 	{tag}
-	{...$$restProps}
+	{...bodyProps}
 >
-	<slot />
+	{@render children?.()}
 </Body>

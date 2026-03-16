@@ -1,22 +1,23 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { CaptionProps, HTMLTextElements } from '../typography/index.js';
 	import { getPillContext, type PillBaseProps } from './index.js';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Writable } from 'svelte/store';
 	import Caption from '../typography/caption.svelte';
-	import { cn as defaultcn } from '../../../lib/index.js';
+	import { cn as defaultcn } from '../../index.js';
 
-	export let tag: keyof HTMLTextElements = 'span';
+	type $$Props = CaptionProps &
+		HTMLAttributes<HTMLDivElement> & {
+			tag?: keyof HTMLTextElements;
+			children?: Snippet;
+		};
 
-	type $$Props = HTMLAttributes<HTMLTextElements[typeof tag]> & CaptionProps;
-
-	let className: $$Props['class'] = undefined;
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let { tag = 'span', class: className, customcn, children }: $$Props = $props();
 
 	const pillProps: Writable<PillBaseProps> = getPillContext();
 
-	const cn = customcn || defaultcn;
+	const cn = $derived(customcn || defaultcn);
 </script>
 
 <Caption
@@ -25,5 +26,5 @@
 	size={$pillProps?.thickness === 'slim' ? 'caption-tiny' : 'caption-small'}
 	variant={$pillProps?.theme === 'default' ? 'caption-invert' : 'caption'}
 >
-	<slot />
+	{@render children?.()}
 </Caption>

@@ -1,17 +1,17 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { cn as defaultcn } from '../../../index.js';
 	import { InformativeBoxIconVariant, type InformativeBoxIconVariants } from './index.js';
 
-	type $$Props = InformativeBoxIconVariants;
+	type Props = InformativeBoxIconVariants & {
+		children?: Snippet;
+	};
 
-	let className: $$Props['class'] = undefined;
-	export let size: $$Props['size'] = 'normal';
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let { size = 'normal', customcn, class: className, children, ...restProps }: Props = $props();
 
-	let cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
-<span class={cn(InformativeBoxIconVariant({ size }), className)} {...$$restProps}>
-	<slot></slot>
+<span class={cn(InformativeBoxIconVariant({ size }), className)} {...restProps}>
+	{@render children?.()}
 </span>

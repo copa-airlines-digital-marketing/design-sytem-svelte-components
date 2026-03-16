@@ -18,14 +18,9 @@ export default tseslint.config(
 			}
 		}
 	},
-	{
-		files: ['**/*.svelte'],
-		languageOptions: {
-			parserOptions: {
-				parser: tseslint.parser
-			}
-		}
-	},
+	// No sobrescribir el parser en .svelte: eslint-plugin-svelte usa el parser
+	// que entiende la sintaxis de Svelte 5 (p. ej. {@render …}). Si se fuerza
+	// tseslint.parser en el archivo completo, el @ de @render se marca como inesperado.
 	{
 		ignores: ['build/', '.svelte-kit/', 'dist/']
 	}

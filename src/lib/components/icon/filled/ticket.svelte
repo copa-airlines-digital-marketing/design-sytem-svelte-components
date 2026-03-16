@@ -4,12 +4,9 @@
 
 	type $$Props = FilledIcon;
 
-	let className: $$Props['class'] = undefined;
-	export let customcn: $$Props['customcn'] = undefined;
-	export let filled: $$Props['filled'] = undefined;
-	export { className as class };
+	let { customcn, filled, class: className }: $$Props = $props();
 
-	let cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
 <svg viewBox="0 0 24 24" class={cn('fill-current', className)} xmlns="http://www.w3.org/2000/svg">

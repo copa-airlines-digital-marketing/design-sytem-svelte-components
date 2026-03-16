@@ -1,22 +1,23 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn as defaultcn } from '../../../index.js';
 	import { Body, type HTMLTextElements, type BodyProps } from '../../typography/index.js';
 
-	export let tag: keyof HTMLTextElements = 'span';
+	type $$Props = HTMLAttributes<HTMLElement> &
+		BodyProps & {
+			tag?: keyof HTMLTextElements;
+			children?: Snippet;
+		};
 
-	type $$Props = HTMLAttributes<HTMLTextElements[typeof tag]> & BodyProps;
+	let { tag = 'span', customcn, class: className, children }: $$Props = $props();
 
-	let className: $$Props['class'] = undefined;
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
-
-	const cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
-<Body {tag} {customcn} size="body-small" class={cn('[grid-area:label] flex gap-1', className)}>
+<Body {tag} customcn={cn} size="body-small" class={cn('[grid-area:label] flex gap-1', className)}>
 	<span> · </span>
 	<span>
-		<slot />
+		{@render children?.()}
 	</span>
 </Body>

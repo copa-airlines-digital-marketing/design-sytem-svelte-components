@@ -1,20 +1,26 @@
 <script lang="ts">
-	import { cn as defaultcn } from '../../index.js';
+	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
+	import { cn as defaultcn } from '../../index.js';
 	import { type OverlineProps, type HTMLTextElements, getTypographySize } from './index.js';
 
-	export let tag: keyof HTMLTextElements = 'p';
+	type Props = OverlineProps &
+		HTMLAttributes<HTMLElement> & {
+			children?: Snippet;
+		};
 
-	type $$Props = HTMLAttributes<HTMLTextElements[typeof tag]> & OverlineProps;
+	let {
+		tag = 'p',
+		size = 'overline',
+		customcn,
+		class: className,
+		children,
+		...restProps
+	}: Props = $props();
 
-	let className: $$Props['class'] = undefined;
-	export let size: $$Props['size'] = 'overline';
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
-
-	let cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
-<svelte:element this={tag} class={cn(getTypographySize(size), className)} {...$$restProps}>
-	<slot />
+<svelte:element this={tag} class={cn(getTypographySize(size), className)} {...restProps}>
+	{@render children?.()}
 </svelte:element>

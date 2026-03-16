@@ -1,6 +1,10 @@
+import type { ClassValue } from 'clsx';
 import type { HTMLAttributes } from 'svelte/elements';
-import type { ClassValue, VariantProps } from 'tailwind-variants';
+import type { VariantProps } from 'tailwind-variants';
+import type { ClassNameValue } from 'tailwind-merge';
 import { tv } from '../../index.js';
+
+type ClassInput = ClassValue | ClassNameValue | null | undefined;
 import Carrot from './carrot.svelte';
 import Phone from './phone.svelte';
 import Globe from './globe.svelte';
@@ -38,19 +42,30 @@ const iconWithDirectionVariants = tv({
 });
 
 type SingularIcon = HTMLAttributes<HTMLElement> & {
-	customcn?: (...inputs: ClassValue[]) => string;
+	customcn?: (...inputs: ClassInput[]) => string;
 };
 
 type FilledIcon = HTMLAttributes<HTMLElement> & {
-	customcn?: (...inputs: ClassValue[]) => string;
+	customcn?: (...inputs: ClassInput[]) => string;
 	filled?: boolean;
 };
 
 type IconWithDirection = HTMLAttributes<HTMLElement> & {
 	direction?: VariantProps<typeof iconWithDirectionVariants>['direction'];
-	customcn?: (...inputs: ClassValue[]) => string;
+	customcn?: (...inputs: ClassInput[]) => string;
 };
 
 export type { IconWithDirection, SingularIcon, FilledIcon };
 
-export { iconWithDirectionVariants, NoIcon, Carrot, Globe, Phone, Filled, Regular, Social };
+export {
+	iconWithDirectionVariants,
+	NoIcon,
+	Carrot,
+	Globe,
+	Phone,
+	Close,
+	Check,
+	Filled,
+	Regular,
+	Social
+};

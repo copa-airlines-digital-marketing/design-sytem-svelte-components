@@ -1,4 +1,5 @@
-import { tv } from '../lib/index.js';
+import type { Snippet } from 'svelte';
+import { tv } from '../../index.js';
 import type { HTMLAttributes } from 'svelte/elements';
 import type { VariantProps } from 'tailwind-variants';
 import Container from './container.svelte';
@@ -33,9 +34,16 @@ const gridItemVariant = tv({
 type Distribution = VariantProps<typeof gridItemVariant>['distribution'];
 type Type = VariantProps<typeof gridContainerVariants>['type'];
 
-type ContainerItemProps = HTMLAttributes<HTMLDivElement> & {
+/** Component-specific props; rest are passed through to the div (rest) */
+type ItemComponentProps = {
+	class?: HTMLAttributes<HTMLDivElement>['class'];
 	distribution?: Distribution;
+	children?: Snippet;
 };
+
+/** Props = our props + div attributes rest; destructuring our props leaves rest correctly typed for the div */
+type ContainerItemProps = ItemComponentProps &
+	Omit<HTMLAttributes<HTMLDivElement>, keyof ItemComponentProps>;
 
 type ContainerProps = HTMLAttributes<HTMLDivElement> & {
 	type?: Type;

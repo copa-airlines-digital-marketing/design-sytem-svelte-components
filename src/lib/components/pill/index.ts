@@ -2,7 +2,7 @@ import type { HTMLAttributes } from 'svelte/elements';
 import type { VariantProps } from 'tailwind-variants';
 import type { ClassValue } from 'clsx';
 import { writable, type Writable } from 'svelte/store';
-import { tv } from '../../../lib/index.js';
+import { tv } from '../../index.js';
 import { getContext, setContext } from 'svelte';
 import Pill from './pill.svelte';
 import PillText from './text.svelte';

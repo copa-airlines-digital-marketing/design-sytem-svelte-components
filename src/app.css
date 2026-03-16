@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+@import '../tailwind-presets/v4/theme.css';
+
+/* Content sources: Tailwind scans these paths for class names (including .ts where tv() defines variants) */
+@source "./**/*.svelte";
+@source "./**/*.ts";
+@source "./**/*.html";
+@source "./**/*.js";

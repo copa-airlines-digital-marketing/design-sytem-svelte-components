@@ -1,24 +1,20 @@
 <script lang="ts">
 	import type { ClassValue } from 'clsx';
-	import { cn as defaultcn } from '../../index.js';
 	import { Avatar as AvatarPrimitive } from 'bits-ui';
+	import { cn as defaultcn } from '../../index.js';
 
 	type $$Props = AvatarPrimitive.ImageProps & {
 		customcn?: (...inputs: ClassValue[]) => string;
 	};
 
-	let className: $$Props['class'] = undefined;
-	export let src: $$Props['src'] = undefined;
-	export let alt: $$Props['alt'] = undefined;
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let { src, alt, customcn, class: className, ...restProps }: $$Props = $props();
 
-	const cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
 <AvatarPrimitive.Image
 	{src}
 	{alt}
 	class={cn('h-full w-full rounded-full object-cover', className)}
-	{...$$restProps}
+	{...restProps}
 />

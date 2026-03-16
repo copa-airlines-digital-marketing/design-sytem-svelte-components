@@ -1,4 +1,3 @@
-import { type VariantProps } from 'tailwind-variants';
 import { tv, cn } from '../../index.js';
 import type { HTMLAttributes, HTMLLinkAttributes } from 'svelte/elements';
 import Heading from './heading.svelte';
@@ -8,7 +7,7 @@ import Overline from './overline.svelte';
 import Link from './link.svelte';
 import type { ClassValue } from 'clsx';
 
-const typography = tv({
+const typographyConfig = {
 	base: 'text-b font-body font-normal mb-6',
 	variants: {
 		size: {
@@ -60,10 +59,12 @@ const typography = tv({
 		size: 'body',
 		variant: 'body'
 	}
-});
+} as const;
 
-type Variant = VariantProps<typeof typography>['variant'];
-type Size = VariantProps<typeof typography>['size'];
+const typography = tv(typographyConfig);
+
+type Variant = keyof (typeof typographyConfig)['variants']['variant'];
+type Size = keyof (typeof typographyConfig)['variants']['size'];
 
 type Typography = {
 	size?: Size;
@@ -99,26 +100,28 @@ type HTMLTextElements = Pick<
 	| 'td'
 >;
 
+type HeadingVariant = Extract<
+	Variant,
+	'h1' | 'h2' | 'h3' | 'h4' | 'display-big' | 'display' | 'display-small' | 'display-tiny'
+>;
+
 type HeadingProps = HTMLAttributes<HTMLHeadingElement> & {
 	tag?: keyof HeadingElements;
-	variant?: keyof Pick<
-		Variant,
-		'h1' | 'h2' | 'h3' | 'h4' | 'display-big' | 'display' | 'display-small' | 'display-tiny'
-	>;
+	variant?: HeadingVariant;
 	customcn?: (...inputs: ClassValue[]) => string;
 };
 
 type BodyProps = {
 	tag?: keyof HTMLTextElements;
-	size?: keyof Pick<Size, 'body' | 'body-large' | 'body-small'>;
-	variant?: keyof Pick<Variant, 'body' | 'body-emphasis' | 'body-invert' | 'body-invert-emphasis'>;
+	size?: Extract<Size, 'body' | 'body-large' | 'body-small'>;
+	variant?: Extract<Variant, 'body' | 'body-emphasis' | 'body-invert' | 'body-invert-emphasis'>;
 	customcn?: (...inputs: ClassValue[]) => string;
 };
 
 type CaptionProps = {
 	tag?: keyof HTMLTextElements;
-	size?: keyof Pick<Size, 'caption' | 'caption-large' | 'caption-small' | 'caption-tiny'>;
-	variant?: keyof Pick<
+	size?: Extract<Size, 'caption' | 'caption-large' | 'caption-small' | 'caption-tiny'>;
+	variant?: Extract<
 		Variant,
 		'caption' | 'caption-secondary' | 'caption-invert' | 'caption-invert-secondary'
 	>;
@@ -127,12 +130,12 @@ type CaptionProps = {
 
 type OverlineProps = {
 	tag?: keyof HTMLTextElements;
-	size?: keyof Pick<Size, 'overline' | 'overline-small'>;
+	size?: Extract<Size, 'overline' | 'overline-small'>;
 	customcn?: (...inputs: ClassValue[]) => string;
 };
 
 type LinkProps = HTMLLinkAttributes & {
-	variant?: keyof Pick<Variant, 'link' | 'link-invert' | 'link-secondary'>;
+	variant?: Extract<Variant, 'link' | 'link-invert' | 'link-secondary'>;
 	customcn?: (...inputs: ClassValue[]) => string;
 };
 
