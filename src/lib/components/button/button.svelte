@@ -1,30 +1,26 @@
 <script lang="ts">
 	import { Button as ButtonPrimitive } from 'bits-ui';
-	import { type Events, type Props, buttonVariants } from './index.js';
+	import { type Props, buttonVariants } from './index.js';
 	import { cn as basecn } from '../../index.js';
 
-	type $$Props = Props;
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Svelte compiler uses $$Events for typing
-	type $$Events = Events;
+	/* eslint-disable svelte/valid-compile -- wrapper: restProps typed via Props (Omit<HTMLButtonAttributes, keyof ButtonComponentProps>) */
+	let {
+		class: className,
+		variant = 'solid-primary-main',
+		size = 'default',
+		customcn,
+		children,
+		...restProps
+	}: Props = $props();
+	/* eslint-enable svelte/valid-compile */
 
-	let className: $$Props['class'] = undefined;
-	export let variant: $$Props['variant'] = 'solid-primary-main';
-	export let size: $$Props['size'] = 'default';
-	export let builders: $$Props['builders'] = [];
-	export let customcn: $$Props['customcn'] = undefined;
-	export { customcn as cn };
-	export { className as class };
-
-	let cn = customcn || basecn;
+	const cn = $derived(customcn ?? basecn);
 </script>
 
 <ButtonPrimitive.Root
-	{builders}
-	class={cn(buttonVariants({ variant, size, className }))}
+	class={cn(buttonVariants({ variant, size, className: className ?? '' }))}
 	type="button"
-	{...$$restProps}
-	on:click
-	on:keydown
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </ButtonPrimitive.Root>

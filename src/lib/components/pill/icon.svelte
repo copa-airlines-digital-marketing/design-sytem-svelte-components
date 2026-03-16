@@ -1,17 +1,18 @@
 <script lang="ts">
-	import { cn as defaultcn } from '../../../lib/index.js';
+	import type { Snippet } from 'svelte';
+	import { cn as defaultcn } from '../../index.js';
 	import type { Writable } from 'svelte/store';
 	import { getPillContext, iconVariants, type PillBaseProps, type PillIconProps } from './index.js';
 
-	type $$Props = PillIconProps;
+	type $$Props = PillIconProps & {
+		children?: Snippet;
+	};
 
 	const pillProps: Writable<PillBaseProps> = getPillContext();
-	let className: $$Props['class'] = undefined;
-	export let side: $$Props['side'] = 'default';
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
 
-	const cn = customcn || defaultcn;
+	let { class: className, side = 'default', customcn, children }: $$Props = $props();
+
+	const cn = $derived(customcn || defaultcn);
 </script>
 
 <span
@@ -21,5 +22,5 @@
 		className
 	)}
 >
-	<slot />
+	{@render children?.()}
 </span>

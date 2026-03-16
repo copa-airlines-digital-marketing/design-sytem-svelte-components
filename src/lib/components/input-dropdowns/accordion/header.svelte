@@ -1,20 +1,19 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { ClassValue } from 'clsx';
 	import { Accordion as AccordionPrimitive } from 'bits-ui';
 	import { cn as defaultcn } from '../../../index.js';
-	import { Trigger } from './index.js';
 
-	type $$Props = AccordionPrimitive.ContentProps & {
+	type $$Props = AccordionPrimitive.HeaderProps & {
 		customcn?: (...inputs: ClassValue[]) => string;
+		children?: Snippet;
 	};
 
-	let className: $$Props['class'] = undefined;
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let { customcn, class: className, children, ...restProps }: $$Props = $props();
 
-	const cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
-<AccordionPrimitive.Header class={cn(className)} {...$$restProps}>
-	<slot {Trigger} />
+<AccordionPrimitive.Header class={cn(className)} {...restProps}>
+	{@render children?.()}
 </AccordionPrimitive.Header>

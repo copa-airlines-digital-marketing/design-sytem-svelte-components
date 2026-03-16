@@ -13,7 +13,8 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest",
+		"test:unit": "vitest run",
+		"test:unit:watch": "vitest",
 		"prepare": "husky"
 	},
 	"exports": {
@@ -31,7 +32,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.7.1",
@@ -42,11 +43,11 @@
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.17.2",
 		"@sveltejs/package": "^2.3.10",
-		"@sveltejs/vite-plugin-svelte": "^3.1.2",
+		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/vite": "^4.0.0",
 		"@types/eslint": "^9.6.1",
 		"autoprefixer": "^10.4.20",
-		"bits-ui": "^0.22.0",
+		"bits-ui": "^2.0.0",
 		"clsx": "^2.1.1",
 		"eslint": "^9.21.0",
 		"eslint-config-prettier": "^9.1.0",
@@ -58,14 +59,14 @@
 		"prettier": "^3.5.2",
 		"prettier-plugin-svelte": "^3.3.3",
 		"publint": "^0.2.12",
-		"svelte": "^4.2.19",
+		"svelte": "^5.0.0",
 		"svelte-check": "^4.1.4",
 		"tailwind-merge": "^3.5.0",
 		"tailwind-variants": "^1.0.0",
 		"tailwindcss": "^4.0.0",
 		"typescript": "^5.7.3",
 		"typescript-eslint": "^8.24.1",
-		"vite": "^5.4.14",
+		"vite": "^6.0.0",
 		"vitest": "^2.1.9"
 	},
 	"svelte": "./dist/index.js",

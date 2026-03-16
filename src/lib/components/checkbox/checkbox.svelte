@@ -1,15 +1,22 @@
 <script lang="ts">
 	import { Checkbox as CheckboxPrimitive } from 'bits-ui';
 	import { cn } from '../../index.js';
+	import type { Props } from './index.js';
 
-	type $$Props = CheckboxPrimitive.Props;
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Svelte compiler uses $$Events for typing
-	type $$Events = CheckboxPrimitive.Events;
-
-	let className: $$Props['class'] = undefined;
-	export let checked: $$Props['checked'] = false;
-	export { className as class };
+	/* eslint-disable svelte/valid-compile -- wrapper: restProps typed via Props (Omit<CheckboxPrimitive.RootProps, keyof CheckboxComponentProps>) */
+	let { class: className, checked = $bindable(false), ...restProps }: Props = $props();
+	/* eslint-enable svelte/valid-compile */
 </script>
+
+{#snippet child({ checked: isChecked }: { checked: boolean; indeterminate: boolean })}
+	<div class={cn('flex size-6 items-center justify-center text-current')}>
+		{#if isChecked}
+			<svg viewBox="0 0 16 13" class="fill-current size-4" xmlns="http://www.w3.org/2000/svg">
+				<path d="M5 12.9996L0 7.99961L1.4 6.59961L5 10.1996L14.6 0.599609L16 1.99961L5 12.9996Z" />
+			</svg>
+		{/if}
+	</div>
+{/snippet}
 
 <CheckboxPrimitive.Root
 	class={cn(
@@ -17,17 +24,6 @@
 		className
 	)}
 	bind:checked
-	{...$$restProps}
-	on:click
->
-	<CheckboxPrimitive.Indicator
-		class={cn('flex size-6 items-center justify-center text-current')}
-		let:isChecked
-	>
-		{#if isChecked}
-			<svg viewBox="0 0 16 13" class="fill-current size-4" xmlns="http://www.w3.org/2000/svg">
-				<path d="M5 12.9996L0 7.99961L1.4 6.59961L5 10.1996L14.6 0.599609L16 1.99961L5 12.9996Z" />
-			</svg>
-		{/if}
-	</CheckboxPrimitive.Indicator>
-</CheckboxPrimitive.Root>
+	{...restProps}
+	{child}
+/>

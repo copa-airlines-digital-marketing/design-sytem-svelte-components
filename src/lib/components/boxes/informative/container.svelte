@@ -1,23 +1,29 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn as defaultcn } from '../../../index.js';
 	import type { ClassValue } from 'clsx';
-	import { Box } from './index.js';
 
-	type $$Props = HTMLAttributes<HTMLDivElement> & {
+	/** Component-specific props; rest are passed through to the div (restProps) */
+	type ContainerComponentProps = {
+		class?: HTMLAttributes<HTMLDivElement>['class'];
 		customcn?: (...inputs: ClassValue[]) => string;
+		children?: Snippet;
 	};
 
-	let className: $$Props['class'] = undefined;
-	let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	type Props = ContainerComponentProps &
+		Omit<HTMLAttributes<HTMLDivElement>, keyof ContainerComponentProps>;
 
-	let cn = customcn || defaultcn;
+	/* eslint-disable svelte/valid-compile -- wrapper: restProps typed via Props (Omit<HTMLAttributes<HTMLDivElement>, keyof ContainerComponentProps>) */
+	let { class: className, customcn, children, ...restProps }: Props = $props();
+	/* eslint-enable svelte/valid-compile */
+
+	const cn = $derived(customcn || defaultcn);
 </script>
 
 <div
 	class={cn('grid grid-cols-[repeat(auto-fit,minmax(268px,1fr))] gap-6', className)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot {Box} />
+	{@render children?.()}
 </div>

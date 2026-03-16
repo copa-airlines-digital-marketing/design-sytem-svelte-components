@@ -2,13 +2,11 @@
 	import { cn } from '../../index.js';
 	import { gridItemVariant, type ContainerItemProps } from './index.js';
 
-	type $$Props = ContainerItemProps;
-
-	let className: $$Props['class'] = undefined;
-	export let distribution: $$Props['distribution'] = 'full';
-	export { className as class };
+	/* eslint-disable svelte/valid-compile -- wrapper: rest typed via ContainerItemProps (Omit<HTMLAttributes<HTMLDivElement>, keyof ItemComponentProps>) */
+	let { class: className, distribution = 'full', children, ...rest }: ContainerItemProps = $props();
+	/* eslint-enable svelte/valid-compile */
 </script>
 
-<div class={cn(gridItemVariant({ distribution }), className)}>
-	<slot />
+<div class={cn(gridItemVariant({ distribution }), className)} {...rest}>
+	{@render children?.()}
 </div>

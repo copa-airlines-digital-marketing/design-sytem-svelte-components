@@ -1,31 +1,24 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { Accordion as AccordionPrimitive } from 'bits-ui';
 	import { cn as defaultcn } from '../../../index.js';
-	import {
-		AccordionTriggerVariant,
-		Title,
-		Label,
-		Icon,
-		CTA,
-		type AccordionTriggerProps
-	} from './index.js';
+	import { AccordionTriggerVariant, type AccordionTriggerProps } from './index.js';
 	import { Carrot } from '../../icon/index.js';
 
-	type Props = AccordionPrimitive.ContentProps & AccordionTriggerProps;
+	type Props = AccordionPrimitive.TriggerProps &
+		AccordionTriggerProps & {
+			children?: Snippet;
+		};
 
-	let className: Props['class'] = undefined;
-	export let separator: Props['separator-position'] = 'top';
-	export let customcn: Props['customcn'] = undefined;
-	export { className as class, separator as 'separator-position' };
+	let {
+		'separator-position': separator = 'top',
+		customcn,
+		class: className,
+		children,
+		...restProps
+	}: Props = $props();
 
-	const cn = customcn || defaultcn;
-
-	const children = {
-		Title,
-		Label,
-		Icon,
-		CTA
-	};
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
 <AccordionPrimitive.Trigger
@@ -34,8 +27,8 @@
 		"grid w-full items-center border-grey-200 p-6 gap-1 [grid-template-areas:'icon_title_label_cta_carrot'] grid-cols-[auto_auto_1fr_auto_auto]",
 		className
 	)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot {...children} />
+	{@render children?.()}
 	<Carrot class="[grid-area:carrot] text-primary" />
 </AccordionPrimitive.Trigger>

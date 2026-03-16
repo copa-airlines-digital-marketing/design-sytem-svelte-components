@@ -1,21 +1,20 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { ClassValue } from 'clsx';
 	import { Accordion } from 'bits-ui';
-	import { Item } from './index.js';
 	import { cn as defaultcn } from '../../../index.js';
 
 	type $$Props = HTMLAttributes<HTMLDivElement> & {
 		customcn?: (...inputs: ClassValue[]) => string;
+		children?: Snippet;
 	};
 
-	let className: $$Props['class'] = undefined;
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let { class: className, customcn, children }: $$Props = $props();
 
-	const cn = customcn || defaultcn;
+	const cn = $derived(customcn || defaultcn);
 </script>
 
-<Accordion.Root class={cn('space-y-2', className)} {...$$restProps}>
-	<slot {Item} />
+<Accordion.Root type="single" class={cn('space-y-2', className)}>
+	{@render children?.()}
 </Accordion.Root>

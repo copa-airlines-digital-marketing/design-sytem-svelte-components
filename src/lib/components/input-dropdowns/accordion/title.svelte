@@ -1,17 +1,17 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { cn as defaultcn } from '../../../index.js';
 	import { getTypographyVariant, type HeadingProps } from '../../typography/index.js';
 
-	type $$Props = HeadingProps;
+	type $$Props = HeadingProps & {
+		children?: Snippet;
+	};
 
-	let className: $$Props['class'] = undefined;
-	export let variant: $$Props['variant'] = 'h3';
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let { variant = 'h3', customcn, class: className, children }: $$Props = $props();
 
-	const cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
 <span class={cn(getTypographyVariant(variant), 'text-primary [grid-area:title]', className)}>
-	<slot />
+	{@render children?.()}
 </span>

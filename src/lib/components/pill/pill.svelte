@@ -1,23 +1,31 @@
 <script lang="ts">
-	import { Text, Icon, pillVariants, setPillContext, type PillProps } from './index.js';
-	import { cn as defaultcn } from '../../../lib/index.js';
+	import type { Snippet } from 'svelte';
+	import { pillVariants, setPillContext, type PillProps } from './index.js';
+	import { cn as defaultcn } from '../../index.js';
 
-	type $$Props = PillProps;
+	type $$Props = PillProps & {
+		children?: Snippet;
+	};
 
-	let className: $$Props['class'] = undefined;
-	export let theme: $$Props['theme'] = 'default';
-	export let outline: $$Props['outline'] = false;
-	export let thickness: $$Props['thickness'] = 'default';
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let {
+		class: className,
+		theme = 'default',
+		outline = false,
+		thickness = 'default',
+		customcn,
+		children
+	}: $$Props = $props();
 
-	const cn = customcn || defaultcn;
+	const cn = $derived(customcn || defaultcn);
 
-	setPillContext({ theme, thickness });
+	const store = setPillContext({ theme: 'default', thickness: 'default' });
+	$effect(() => {
+		store.set({ theme, thickness });
+	});
 </script>
 
 <div class={cn(pillVariants({ theme, outline }), className)}>
-	<slot {Text} {Icon} />
+	{@render children?.()}
 </div>
 
 <style>

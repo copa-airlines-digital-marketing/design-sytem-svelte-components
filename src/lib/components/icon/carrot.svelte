@@ -4,12 +4,9 @@
 
 	type $$Props = IconWithDirection;
 
-	let className: $$Props['class'] = undefined;
-	export let direction: $$Props['direction'] = 'up';
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
+	let { direction = 'up', customcn, class: className }: $$Props = $props();
 
-	let cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
 <svg

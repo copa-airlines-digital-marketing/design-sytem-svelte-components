@@ -1,21 +1,27 @@
 <script lang="ts">
-	import { cn as defaultcn } from '../../index.js';
+	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
+	import { cn as defaultcn } from '../../index.js';
 	import { getTypography, type CaptionProps, type HTMLTextElements } from './index.js';
 
-	export let tag: keyof HTMLTextElements = 'p';
+	type Props = CaptionProps &
+		HTMLAttributes<HTMLElement> & {
+			children?: Snippet;
+		};
 
-	type $$Props = HTMLAttributes<HTMLTextElements[typeof tag]> & CaptionProps;
+	let {
+		tag = 'p',
+		size = 'caption',
+		variant = 'caption',
+		customcn,
+		class: className,
+		children,
+		...restProps
+	}: Props = $props();
 
-	let className: $$Props['class'] = undefined;
-	export let size: $$Props['size'] = 'caption';
-	export let variant: $$Props['variant'] = 'caption';
-	export let customcn: $$Props['customcn'] = undefined;
-	export { className as class };
-
-	let cn = customcn || defaultcn;
+	const cn = $derived(customcn ?? defaultcn);
 </script>
 
-<svelte:element this={tag} class={cn(getTypography(size, variant), className)} {...$$restProps}>
-	<slot />
+<svelte:element this={tag} class={cn(getTypography(size, variant), className)} {...restProps}>
+	{@render children?.()}
 </svelte:element>
