@@ -4,25 +4,25 @@ import type { HTMLAttributes } from 'svelte/elements';
 import Divider from './divider.svelte';
 
 const dividerVariants = tv({
-	base: 'block opacity-50',
+	base: 'block border-0 border-solid opacity-50',
 	variants: {
 		lineType: {
-			solid: 'bg-no-repeat',
-			dashed: 'bg-repeat-space'
+			solid: 'border-solid',
+			dashed: 'border-dashed'
 		},
 		opaque: {
 			true: 'opacity-100'
 		},
 		orientation: {
-			horizontal: 'h-px w-full',
-			vertical: 'h-full w-px'
+			horizontal: 'w-full border-t',
+			vertical: 'h-full border-l'
 		},
 		spacing: {
 			true: 'my-1'
 		},
 		theme: {
-			light: 'bg-grey-300',
-			dark: 'bg-grey-50'
+			light: 'border-grey-300',
+			dark: 'border-grey-50'
 		}
 	}
 });

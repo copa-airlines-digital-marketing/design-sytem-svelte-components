@@ -1,8 +1,14 @@
 @import 'tailwindcss';
 @import '../tailwind-presets/v4/theme.css';
+@import '../tailwind-presets/static/cm-fonts.css';
 
 /* Content sources: Tailwind scans these paths for class names (including .ts where tv() defines variants) */
 @source "./**/*.svelte";
 @source "./**/*.ts";
 @source "./**/*.html";
 @source "./**/*.js";
+
+/* bits-ui Accordion: content is always mounted (forceMount), visibility is driven by data-state */
+[data-accordion-content][data-state='closed'] {
+	display: none;
+}

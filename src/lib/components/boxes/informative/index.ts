@@ -14,8 +14,8 @@ const informativeBoxVariant = tv({
 	base: 'p-4 rounded-2xl max-h-64 grid border border-grey-300 content-start',
 	variants: {
 		orientation: {
-			horizontal: "[grid-template-areas:'head_title''head_description'] min-w-106",
-			vertical: "[grid-template-areas:'head''title''description'] min-w-67"
+			horizontal: "[grid-template-areas:'head_title'_'head_description'] min-w-106",
+			vertical: "[grid-template-areas:'head'_'title'_'description'] min-w-67"
 		},
 		alignment: {
 			left: 'justify-items-start text-left',

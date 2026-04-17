@@ -18,7 +18,7 @@
 <span
 	class={cn(
 		iconVariants({ side }),
-		$pillProps.theme === 'default' ? 'fill-common-white' : 'fill-grey-600',
+		$pillProps.theme === 'default' ? 'text-common-white' : 'text-grey-600',
 		className
 	)}
 >

@@ -15,7 +15,9 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest run",
 		"test:unit:watch": "vitest",
-		"prepare": "husky"
+		"prepare": "husky",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
 	},
 	"exports": {
 		".": {
@@ -39,6 +41,9 @@
 		"@commitlint/config-conventional": "^19.7.1",
 		"@eslint/js": "^9.0.0",
 		"@playwright/test": "^1.50.1",
+		"@storybook/addon-docs": "10.3.5",
+		"@storybook/svelte": "10.3.5",
+		"@storybook/sveltekit": "10.3.5",
 		"@sveltejs/adapter-auto": "^3.3.1",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.17.2",
@@ -59,6 +64,7 @@
 		"prettier": "^3.5.2",
 		"prettier-plugin-svelte": "^3.3.3",
 		"publint": "^0.2.12",
+		"storybook": "10.3.5",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.1.4",
 		"tailwind-merge": "^3.5.0",
