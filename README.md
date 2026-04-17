@@ -20,6 +20,10 @@ src/
       divider/
       grid/
       icon/
+      helper-text/
+      input/
+      option/
+      select/
       input-dropdowns/accordion/
       pictograms/
       picture/
@@ -140,8 +144,16 @@ Detailed per-component docs live in [`docs/components/`](./docs/components/).
 | Icon                      | [docs/components/icon.md](./docs/components/icon.md)                       |
 | Informative Box           | [docs/components/informative-box.md](./docs/components/informative-box.md) |
 | Accordion                 | [docs/components/accordion.md](./docs/components/accordion.md)             |
+| Dimmer                    | [docs/components/dimmer.md](./docs/components/dimmer.md)                   |
 | NavTab                    | [docs/components/nav-tab.md](./docs/components/nav-tab.md)                 |
 | Pictograms                | [docs/components/pictograms.md](./docs/components/pictograms.md)           |
+| Radio                     | [docs/components/radio.md](./docs/components/radio.md)                     |
+| HelperText                | [docs/components/helper-text.md](./docs/components/helper-text.md)         |
+| Input                     | [docs/components/input.md](./docs/components/input.md)                     |
+| Option / OptionList       | [docs/components/option.md](./docs/components/option.md)                   |
+| Select                    | [docs/components/select.md](./docs/components/select.md)                   |
+| Autocomplete              | [docs/components/autocomplete.md](./docs/components/autocomplete.md)       |
+| Slider                    | [docs/components/slider.md](./docs/components/slider.md)                   |
 | Picture                   | [docs/components/picture.md](./docs/components/picture.md)                 |
 | Pill                      | [docs/components/pill.md](./docs/components/pill.md)                       |
 | Typography                | [docs/components/typography.md](./docs/components/typography.md)           |

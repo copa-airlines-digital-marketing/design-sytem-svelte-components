@@ -23,8 +23,9 @@ import Check from './regular/check.svelte';
 import Walk from './regular/walk.svelte';
 import Camera from './regular/camera.svelte';
 import History from './regular/history.svelte';
+import KeyboardArrow from './regular/keyboard-arrow.svelte';
 
-const Regular = { Close, Check, Walk, Camera, History };
+const Regular = { Close, Check, Walk, Camera, History, KeyboardArrow };
 
 const Filled = { Time, Ticket };
 
@@ -65,6 +66,7 @@ export {
 	Phone,
 	Close,
 	Check,
+	KeyboardArrow,
 	Filled,
 	Regular,
 	Social
