@@ -1,5 +1,5 @@
 {
-	"exclude": ["node_modules", "vitest.config.ts", "tailwind-presets"],
+	"exclude": ["node_modules", "vitest.config.ts", "tailwind-presets", "storybook-static"],
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,
