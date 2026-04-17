@@ -140,6 +140,7 @@ Detailed per-component docs live in [`docs/components/`](./docs/components/).
 | Icon                      | [docs/components/icon.md](./docs/components/icon.md)                       |
 | Informative Box           | [docs/components/informative-box.md](./docs/components/informative-box.md) |
 | Accordion                 | [docs/components/accordion.md](./docs/components/accordion.md)             |
+| NavTab                    | [docs/components/nav-tab.md](./docs/components/nav-tab.md)                 |
 | Pictograms                | [docs/components/pictograms.md](./docs/components/pictograms.md)           |
 | Picture                   | [docs/components/picture.md](./docs/components/picture.md)                 |
 | Pill                      | [docs/components/pill.md](./docs/components/pill.md)                       |
