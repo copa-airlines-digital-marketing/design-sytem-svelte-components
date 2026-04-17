@@ -1,0 +1,52 @@
+---
+description: Standards every Copa Design System component must meet
+globs: src/lib/components/**
+alwaysApply: false
+---
+
+# Component Standards
+
+Every component in `src/lib/components/` must satisfy all three requirements below before it can be merged.
+
+## 1 — Variant tests
+
+Each component must have a `*.test.ts` co-located in its directory that:
+- Imports the exported `tv()` variant function(s) from `index.ts`
+- Asserts the correct Tailwind class is present for each variant key
+- Uses `@testing-library/svelte` + `happy-dom` for components with no exported variant function
+
+```ts
+// ✅ GOOD — pure variant function test (no DOM needed)
+import { dividerVariants } from './index.js';
+test('dashed lineType adds border-dashed', () => {
+  expect(dividerVariants({ lineType: 'dashed' })).toContain('border-dashed');
+});
+
+// ✅ GOOD — render test when no variant function is exported
+import { render } from '@testing-library/svelte';
+import Checkbox from './checkbox.svelte';
+test('renders with border class', async () => {
+  const { container } = render(Checkbox);
+  expect(container.querySelector('button')?.className).toContain('border');
+});
+```
+
+## 2 — Storybook story
+
+Each component must have a corresponding story in `src/stories/`:
+- A `ComponentNameStory.svelte` wrapper that exposes only explicitly modifiable props (no HTML attribute spread)
+- A `component-name.stories.ts` with `tags: ['autodocs']`, `argTypes` typed with `control`, and at least one story per visible variant
+
+## 3 — Tailwind presets
+
+All visual styles must come from the design system tokens defined in `tailwind-presets/v4/theme.css`.
+
+```ts
+// ❌ BAD — arbitrary color not from the design system
+'bg-[#0032A0]'
+
+// ✅ GOOD — design system token
+'bg-primary'
+```
+
+Never use inline `style=""` for colors, spacing, or typography. Use `tv()` variants with the project's tokens.
