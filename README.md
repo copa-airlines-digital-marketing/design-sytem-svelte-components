@@ -1,58 +1,147 @@
-# create-svelte
+# Copa Airlines Design System — Svelte Components
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+A Svelte 5 component library built on top of [bits-ui](https://bits-ui.com), [Tailwind CSS v4](https://tailwindcss.com), and [tailwind-variants](https://www.tailwind-variants.org). Components are fully typed, accessible, and composable.
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+> **AI context:** This is a publishable SvelteKit library (`svelte-package`). Source lives in `src/lib/components/`. Each component is a thin, styled wrapper around a `bits-ui` primitive or a plain HTML element. Styling is driven by `tailwind-variants` (`tv`) and merged with a custom `tailwindMerge` config (`cn`). All component props are exported from the component's `index.ts` — start there.
 
-## Creating a project
+---
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Repository layout
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+```
+src/
+  lib/
+    index.ts                  # cn, tv, flyAndScale, tailwindMerge — shared utilities
+    components/
+      avatar/
+      boxes/informative/
+      button/
+      checkbox/
+      divider/
+      grid/
+      icon/
+      input-dropdowns/accordion/
+      pictograms/
+      picture/
+      pill/
+      typography/
+  routes/
+    +page.svelte              # Live showcase / demo app
+tailwind-presets/             # Standalone Tailwind preset / tokens package
+docs/
+  components/                 # Per-component documentation (props, variants, examples)
+  utilities.md                # cn, tv, flyAndScale, tailwindMerge
 ```
 
-## Developing
+---
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Prerequisites
+
+| Tool | Version   |
+| ---- | --------- |
+| Node | > 20.18.0 |
+| pnpm | 10.x      |
+
+---
+
+## Getting started
 
 ```bash
-npm run dev
+# Install dependencies
+pnpm install
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# Start the dev server (shows the component showcase at http://localhost:5173)
+pnpm dev
+
+# Type-check
+pnpm check
+
+# Run unit tests
+pnpm test:unit
+
+# Run integration tests (Playwright)
+pnpm test:integration
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+---
 
-## Building
+## Using the library in another project
 
-To build your library:
+### Install
 
 ```bash
-npm run package
+pnpm add design-sytem-svelte-components
 ```
 
-To create a production version of your showcase app:
+The package entry point is `dist/index.js` (types at `dist/index.d.ts`). Every component and utility is re-exported from `src/lib/index.ts` at build time.
 
-```bash
-npm run build
+### Import a component
+
+```svelte
+<script>
+	import { Button } from 'design-sytem-svelte-components/button';
+	// or from the barrel:
+	import { Button } from 'design-sytem-svelte-components';
+</script>
+
+<Button variant="solid-primary-main">Book now</Button>
 ```
 
-You can preview the production build with `npm run preview`.
+### Tailwind CSS setup
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Components rely on the custom token set from `tailwind-presets/`. Add it to your Tailwind config:
 
-## Publishing
+```js
+// tailwind.config.js
+import preset from 'design-sytem-svelte-components/tailwind-preset';
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+export default {
+	presets: [preset]
+};
+```
 
-To publish your library to [npm](https://www.npmjs.com):
+---
+
+## Building & publishing
 
 ```bash
+# Build the library (outputs to dist/)
+pnpm package
+
+# Build the showcase app
+pnpm build
+
+# Publish to npm
 npm publish
 ```
+
+---
+
+## Development conventions
+
+- **Commit messages** follow [Conventional Commits](https://www.conventionalcommits.org/) (enforced by commitlint + husky).
+- **Code style** is managed by Prettier and ESLint (`pnpm lint` / `pnpm format`).
+- **Testing** — unit tests live alongside source (`*.test.ts`); integration tests are in `tests/`.
+- **New components** — create a folder under `src/lib/components/<name>/`, add `index.ts` for the public API, and document the component in `docs/components/<name>.md`.
+
+---
+
+## Documentation
+
+Detailed per-component docs live in [`docs/components/`](./docs/components/).
+
+| Component                 | Doc                                                                        |
+| ------------------------- | -------------------------------------------------------------------------- |
+| Avatar                    | [docs/components/avatar.md](./docs/components/avatar.md)                   |
+| Button                    | [docs/components/button.md](./docs/components/button.md)                   |
+| Checkbox                  | [docs/components/checkbox.md](./docs/components/checkbox.md)               |
+| Divider                   | [docs/components/divider.md](./docs/components/divider.md)                 |
+| Grid                      | [docs/components/grid.md](./docs/components/grid.md)                       |
+| Icon                      | [docs/components/icon.md](./docs/components/icon.md)                       |
+| Informative Box           | [docs/components/informative-box.md](./docs/components/informative-box.md) |
+| Accordion                 | [docs/components/accordion.md](./docs/components/accordion.md)             |
+| Pictograms                | [docs/components/pictograms.md](./docs/components/pictograms.md)           |
+| Picture                   | [docs/components/picture.md](./docs/components/picture.md)                 |
+| Pill                      | [docs/components/pill.md](./docs/components/pill.md)                       |
+| Typography                | [docs/components/typography.md](./docs/components/typography.md)           |
+| Utilities (`cn`, `tv`, …) | [docs/utilities.md](./docs/utilities.md)                                   |
