@@ -7,6 +7,7 @@ const allIcons = [
 	'Carrot',
 	'Check',
 	'Close',
+	'Filter',
 	'Walk',
 	'Camera',
 	'History',
@@ -81,6 +82,11 @@ export const SocialWhatsapp: Story = {
 export const SocialFacebook: Story = {
 	name: 'Social — Facebook',
 	args: { icon: 'Facebook', color: 'text-grey-700' }
+};
+
+export const FilterIcon: Story = {
+	name: 'Filter',
+	args: { icon: 'Filter', color: 'text-grey-500' }
 };
 
 export const FilledTicket: Story = {

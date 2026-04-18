@@ -7,6 +7,7 @@
 	import Close from '../lib/components/icon/regular/close.svelte';
 	import Walk from '../lib/components/icon/regular/walk.svelte';
 	import Camera from '../lib/components/icon/regular/camera.svelte';
+	import Filter from '../lib/components/icon/regular/filter.svelte';
 	import History from '../lib/components/icon/regular/history.svelte';
 	import Time from '../lib/components/icon/filled/time.svelte';
 	import Ticket from '../lib/components/icon/filled/ticket.svelte';
@@ -24,6 +25,7 @@
 		| 'Carrot'
 		| 'Check'
 		| 'Close'
+		| 'Filter'
 		| 'Walk'
 		| 'Camera'
 		| 'History'
@@ -61,6 +63,7 @@
 		Carrot,
 		Check,
 		Close,
+		Filter,
 		Walk,
 		Camera,
 		History,

@@ -53,7 +53,7 @@
 		>
 			<ModalClose {title} {titleSize} onClose={handleClose} />
 
-			<div class="flex-1 overflow-y-auto px-14 pb-4">
+			<div class="min-h-0 flex-1 overflow-y-auto px-14 pb-4">
 				{@render children?.()}
 			</div>
 
