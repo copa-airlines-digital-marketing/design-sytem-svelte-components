@@ -22,6 +22,7 @@ const meta = {
 				'solid-primary-light',
 				'outline-primary-main',
 				'outline-invert',
+				'transparent-invert',
 				'transparent-primary-main',
 				'link',
 				'link-invert'
@@ -58,6 +59,16 @@ export const SolidPrimaryLight: Story = {
 
 export const Outline: Story = {
 	args: { variant: 'outline-primary-main', label: 'Learn more' }
+};
+
+export const OutlineInvert: Story = {
+	name: 'Outline Invert (dark bg)',
+	args: { variant: 'outline-invert', label: 'Learn more' }
+};
+
+export const TransparentInvert: Story = {
+	name: 'Transparent Invert (dark bg)',
+	args: { variant: 'transparent-invert', label: 'See details' }
 };
 
 export const Transparent: Story = {

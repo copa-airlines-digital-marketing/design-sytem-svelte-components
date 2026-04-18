@@ -30,10 +30,20 @@ describe('buttonVariants', () => {
 		expect(cls).toContain('text-primary');
 	});
 
-	test('outline-invert variant', () => {
+	test('outline-invert variant has white border and hover states', () => {
 		const cls = buttonVariants({ variant: 'outline-invert' });
 		expect(cls).toContain('text-common-white');
 		expect(cls).toContain('border-common-white');
+		expect(cls).toContain('hover:bg-common-white');
+		expect(cls).toContain('hover:text-primary-light');
+	});
+
+	test('transparent-invert variant has no border and white-overlay hover', () => {
+		const cls = buttonVariants({ variant: 'transparent-invert' });
+		expect(cls).toContain('text-common-white');
+		expect(cls).toContain('border-transparent');
+		expect(cls).toContain('hover:bg-common-white/10');
+		expect(cls).toContain('active:bg-common-white/20');
 	});
 
 	test('transparent-primary-main variant', () => {

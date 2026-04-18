@@ -23,7 +23,10 @@ const buttonVariants = tv({
 				'bg-primary-light text-common-white outline-primary-light border-primary-light hover:bg-primary-ultradark active:bg-primary-light focus:bg-primary-ultradark disabled:text-grey-500 disabled:bg-grey-100',
 			'outline-primary-main':
 				'text-primary outline-primary border-2 border-primary hover:bg-background-lightblue focus:bg-background-lightblue active:bg-primary-ultralight disabled:border-grey-500 disabled:text-grey-500 disabled:bg-grey-100',
-			'outline-invert': 'text-common-white border-common-white',
+			'outline-invert':
+				'text-common-white border-common-white outline-common-white hover:bg-common-white hover:text-primary-light active:bg-common-white active:text-primary-light focus:bg-common-white focus:text-primary-light disabled:opacity-50 disabled:bg-transparent',
+			'transparent-invert':
+				'text-common-white border-transparent outline-common-white hover:bg-common-white/10 active:bg-common-white/20 focus:bg-common-white/10 disabled:opacity-50 disabled:bg-transparent',
 			'transparent-primary-main':
 				'text-primary border-transparent hover:bg-background-lightblue active:bg-background-lightblue focus:bg-background-lightblue active:outline-primary-faded focus:outline-primary-faded',
 			link: 'text-primary hover:text-primary-light focus:text-primary-light active:text-primary-light',

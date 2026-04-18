@@ -6,6 +6,7 @@
 		| 'solid-primary-light'
 		| 'outline-primary-main'
 		| 'outline-invert'
+		| 'transparent-invert'
 		| 'transparent-primary-main'
 		| 'link'
 		| 'link-invert';
