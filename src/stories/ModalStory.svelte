@@ -25,6 +25,10 @@
 	}: Props = $props();
 
 	let isOpen = $state(open);
+
+	$effect(() => {
+		isOpen = open;
+	});
 </script>
 
 <Button onclick={() => (isOpen = true)}>Open Modal</Button>
