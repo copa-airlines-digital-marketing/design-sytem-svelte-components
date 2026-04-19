@@ -58,13 +58,13 @@ The modal renders:
 
 ### `titleSize` values
 
-| Value     | Font class | Figma size                     |
-| --------- | ---------- | ------------------------------ |
-| `default` | —          | X button only, no title        |
-| `'56px'`  | `text-u2`  | Large heading (e.g. u2 ~28px+) |
-| `'40px'`  | `text-u3`  | Medium heading                 |
-| `'32px'`  | `text-u4`  | Standard heading               |
-| `'16px'`  | `text-u5`  | Small heading                  |
+| Value     | Font class | Figma font-size         |
+| --------- | ---------- | ----------------------- |
+| `default` | —          | X button only, no title |
+| `'56px'`  | `text-u5`  | 32px (2rem)             |
+| `'40px'`  | `text-u4`  | 28px (1.875rem)         |
+| `'32px'`  | `text-u3`  | 24px (1.5rem)           |
+| `'16px'`  | `text-u2`  | 20px (1.125rem)         |
 
 ### `size` values
 

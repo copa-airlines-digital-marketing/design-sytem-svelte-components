@@ -57,10 +57,10 @@ const modalCloseTitleVariants = tv({
 	variants: {
 		titleSize: {
 			default: '',
-			'56px': 'text-u2',
-			'40px': 'text-u3',
-			'32px': 'text-u4',
-			'16px': 'text-u5'
+			'56px': 'text-u5',
+			'40px': 'text-u4',
+			'32px': 'text-u3',
+			'16px': 'text-u2'
 		}
 	},
 	defaultVariants: {
