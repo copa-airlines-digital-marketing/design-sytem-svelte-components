@@ -22,7 +22,7 @@ const AccordionTriggerVariant = tv({
 });
 
 type AccordionTriggerProps = AccordionTriggerPropsPrimitive & {
-	'separator-position': VariantProps<typeof AccordionTriggerVariant>['separator-position'];
+	'separator-position'?: VariantProps<typeof AccordionTriggerVariant>['separator-position'];
 	customcn?: (...inputs: ClassValue[]) => string;
 };
 

@@ -22,6 +22,14 @@ export default tseslint.config(
 	// que entiende la sintaxis de Svelte 5 (p. ej. {@render …}). Si se fuerza
 	// tseslint.parser en el archivo completo, el @ de @render se marca como inesperado.
 	{
+		files: ['**/*.svelte'],
+		languageOptions: {
+			parserOptions: {
+				parser: tseslint.parser
+			}
+		}
+	},
+	{
 		ignores: ['build/', '.svelte-kit/', 'dist/']
 	}
 );

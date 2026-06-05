@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Dialog } from 'bits-ui';
-	import { cn as defaultCn, flyAndScale } from '../../index.js';
+	import { cn as defaultCn } from '../../index.js';
 	import { modalOverlayVariants, modalContentVariants, type ModalProps } from './index.js';
 	import ModalClose from './modal-close.svelte';
 	import ModalActionBar from './modal-action-bar.svelte';
@@ -41,16 +41,8 @@
 	}}
 >
 	<Dialog.Portal>
-		<Dialog.Overlay
-			class={cn(modalOverlayVariants())}
-			transition={flyAndScale}
-			transitionConfig={{ duration: 150, y: 0, start: 1 }}
-		/>
-		<Dialog.Content
-			class={cn(modalContentVariants({ size, breakpoint }), className)}
-			transition={flyAndScale}
-			transitionConfig={{ duration: 200, y: 8, start: 0.97 }}
-		>
+		<Dialog.Overlay class={cn(modalOverlayVariants())} />
+		<Dialog.Content class={cn(modalContentVariants({ size, breakpoint }), className)}>
 			<ModalClose {title} {titleSize} onClose={handleClose} />
 
 			<div class="min-h-0 flex-1 overflow-y-auto px-14 pb-4">

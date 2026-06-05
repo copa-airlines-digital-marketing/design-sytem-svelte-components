@@ -1,5 +1,5 @@
 import { tv, cn } from '../../index.js';
-import type { HTMLAttributes, HTMLLinkAttributes } from 'svelte/elements';
+import type { HTMLAnchorAttributes, HTMLAttributes } from 'svelte/elements';
 import Heading from './heading.svelte';
 import Body from './body.svelte';
 import Caption from './caption.svelte';
@@ -134,7 +134,7 @@ type OverlineProps = {
 	customcn?: (...inputs: ClassValue[]) => string;
 };
 
-type LinkProps = HTMLLinkAttributes & {
+type LinkProps = HTMLAnchorAttributes & {
 	variant?: Extract<Variant, 'link' | 'link-invert' | 'link-secondary'>;
 	customcn?: (...inputs: ClassValue[]) => string;
 };
