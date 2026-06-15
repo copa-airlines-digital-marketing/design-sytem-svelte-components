@@ -17,6 +17,7 @@ declare const buttonVariants: import("tailwind-variants").TVReturnType<{
         'solid-primary-light': string;
         'outline-primary-main': string;
         'outline-invert': string;
+        'transparent-invert': string;
         'transparent-primary-main': string;
         link: string;
         'link-invert': string;
@@ -36,6 +37,7 @@ declare const buttonVariants: import("tailwind-variants").TVReturnType<{
         'solid-primary-light': string;
         'outline-primary-main': string;
         'outline-invert': string;
+        'transparent-invert': string;
         'transparent-primary-main': string;
         link: string;
         'link-invert': string;
@@ -55,6 +57,7 @@ declare const buttonVariants: import("tailwind-variants").TVReturnType<{
         'solid-primary-light': string;
         'outline-primary-main': string;
         'outline-invert': string;
+        'transparent-invert': string;
         'transparent-primary-main': string;
         link: string;
         'link-invert': string;

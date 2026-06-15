@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import type { HTMLLinkAttributes } from 'svelte/elements';
 	import { cn as defaultcn } from '../../index.js';
 	import { type LinkProps, getTypographyVariant } from './index.js';
 

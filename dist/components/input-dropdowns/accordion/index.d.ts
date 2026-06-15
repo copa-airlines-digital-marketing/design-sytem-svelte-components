@@ -27,7 +27,7 @@ declare const AccordionTriggerVariant: import("tailwind-variants").TVReturnType<
     };
 }, undefined, undefined, unknown, unknown, undefined>>;
 type AccordionTriggerProps = AccordionTriggerPropsPrimitive & {
-    'separator-position': VariantProps<typeof AccordionTriggerVariant>['separator-position'];
+    'separator-position'?: VariantProps<typeof AccordionTriggerVariant>['separator-position'];
     customcn?: (...inputs: ClassValue[]) => string;
 };
 export type { AccordionTriggerProps };

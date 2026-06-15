@@ -20,7 +20,7 @@ declare const dividerVariants: import("tailwind-variants").TVReturnType<{
         light: string;
         dark: string;
     };
-}, undefined, "block opacity-50", {
+}, undefined, "block border-0 border-solid opacity-50", {
     lineType: {
         solid: string;
         dashed: string;
@@ -58,7 +58,7 @@ declare const dividerVariants: import("tailwind-variants").TVReturnType<{
         light: string;
         dark: string;
     };
-}, undefined, "block opacity-50", unknown, unknown, undefined>>;
+}, undefined, "block border-0 border-solid opacity-50", unknown, unknown, undefined>>;
 type LineType = VariantProps<typeof dividerVariants>['lineType'];
 type Opaque = VariantProps<typeof dividerVariants>['opaque'];
 type Orientation = VariantProps<typeof dividerVariants>['orientation'];

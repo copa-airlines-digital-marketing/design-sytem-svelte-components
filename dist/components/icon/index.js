@@ -17,7 +17,9 @@ import Check from './regular/check.svelte';
 import Walk from './regular/walk.svelte';
 import Camera from './regular/camera.svelte';
 import History from './regular/history.svelte';
-var Regular = { Close: Close, Check: Check, Walk: Walk, Camera: Camera, History: History };
+import KeyboardArrow from './regular/keyboard-arrow.svelte';
+import Filter from './regular/filter.svelte';
+var Regular = { Close: Close, Check: Check, Walk: Walk, Camera: Camera, History: History, KeyboardArrow: KeyboardArrow, Filter: Filter };
 var Filled = { Time: Time, Ticket: Ticket };
 var Social = { Email: Email, Facebook: Facebook, Instagram: Instagram, Tiktok: Tiktok, X: X, Youtube: Youtube, Whatsapp: Whatsapp };
 var iconWithDirectionVariants = tv({
@@ -30,4 +32,4 @@ var iconWithDirectionVariants = tv({
         }
     }
 });
-export { iconWithDirectionVariants, NoIcon, Carrot, Globe, Phone, Close, Check, Filled, Regular, Social };
+export { iconWithDirectionVariants, NoIcon, Carrot, Globe, Phone, Close, Check, KeyboardArrow, Filter, Filled, Regular, Social };

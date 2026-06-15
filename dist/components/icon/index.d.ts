@@ -9,12 +9,16 @@ import Globe from './globe.svelte';
 import NoIcon from './no-icon.svelte';
 import Close from './regular/close.svelte';
 import Check from './regular/check.svelte';
+import KeyboardArrow from './regular/keyboard-arrow.svelte';
+import Filter from './regular/filter.svelte';
 declare const Regular: {
     Close: import("svelte").Component<SingularIcon, {}, "">;
     Check: import("svelte").Component<SingularIcon, {}, "">;
     Walk: import("svelte").Component<SingularIcon, {}, "">;
     Camera: import("svelte").Component<SingularIcon, {}, "">;
     History: import("svelte").Component<SingularIcon, {}, "">;
+    KeyboardArrow: import("svelte").Component<IconWithDirection, {}, "">;
+    Filter: import("svelte").Component<SingularIcon, {}, "">;
 };
 declare const Filled: {
     Time: import("svelte").Component<FilledIcon, {}, "">;
@@ -63,4 +67,4 @@ type IconWithDirection = HTMLAttributes<HTMLElement> & {
     customcn?: (...inputs: ClassInput[]) => string;
 };
 export type { IconWithDirection, SingularIcon, FilledIcon };
-export { iconWithDirectionVariants, NoIcon, Carrot, Globe, Phone, Close, Check, Filled, Regular, Social };
+export { iconWithDirectionVariants, NoIcon, Carrot, Globe, Phone, Close, Check, KeyboardArrow, Filter, Filled, Regular, Social };
