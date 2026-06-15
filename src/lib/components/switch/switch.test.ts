@@ -1,8 +1,16 @@
 import { vi, describe, test, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
 
 vi.mock('./switch.svelte', () => ({ default: {} }));
 
-import { switchRootVariants, switchThumbVariants } from './index.js';
+import {
+	switchLabelVariants,
+	switchRootVariants,
+	switchThumbVariants,
+	switchWrapperVariants
+} from './index.js';
+
+const source = readFileSync('src/lib/components/switch/switch.svelte', 'utf-8');
 
 describe('switchRootVariants', () => {
 	test('has base layout classes', () => {
@@ -67,5 +75,41 @@ describe('switchThumbVariants', () => {
 	test('has rounded-full class', () => {
 		const cls = switchThumbVariants();
 		expect(cls).toContain('rounded-full');
+	});
+});
+
+describe('switchWrapperVariants', () => {
+	test('lays out optional labels and switch inline', () => {
+		const cls = switchWrapperVariants();
+		expect(cls).toContain('inline-flex');
+		expect(cls).toContain('items-center');
+		expect(cls).toContain('gap-2');
+	});
+});
+
+describe('switchLabelVariants', () => {
+	test('has clickable label typography and focus styles', () => {
+		const cls = switchLabelVariants();
+		expect(cls).toContain('font-body');
+		expect(cls).toContain('text-b');
+		expect(cls).toContain('focus-visible:outline-primary-faded');
+	});
+
+	test('marks the selected label with emphasis', () => {
+		const cls = switchLabelVariants({ selected: true });
+		expect(cls).toContain('font-semibold');
+		expect(cls).toContain('text-grey-700');
+	});
+});
+
+describe('Switch label controls', () => {
+	test('off label selects false and on label selects true', () => {
+		expect(source).toContain('onclick={() => setChecked(false)}');
+		expect(source).toContain('onclick={() => setChecked(true)}');
+	});
+
+	test('labels and switch share the same checked-change handler', () => {
+		expect(source).toContain('onCheckedChange={setChecked}');
+		expect(source).toContain('onCheckedChange?.(nextChecked)');
 	});
 });

@@ -4,9 +4,11 @@
 	type Props = {
 		checked?: boolean;
 		disabled?: boolean;
+		offLabel?: string;
+		onLabel?: string;
 	};
 
-	let { checked = false, disabled = false }: Props = $props();
+	let { checked = false, disabled = false, offLabel, onLabel }: Props = $props();
 </script>
 
-<Switch bind:checked {disabled} />
+<Switch bind:checked {disabled} {offLabel} {onLabel} />

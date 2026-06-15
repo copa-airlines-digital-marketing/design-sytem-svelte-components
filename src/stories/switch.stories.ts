@@ -7,7 +7,7 @@ const meta = {
 	tags: ['autodocs'],
 	parameters: {
 		controls: {
-			include: ['checked', 'disabled']
+			include: ['checked', 'disabled', 'offLabel', 'onLabel']
 		}
 	},
 	argTypes: {
@@ -17,12 +17,22 @@ const meta = {
 		},
 		disabled: {
 			control: 'boolean',
-			description: 'Disables interaction — applies cursor-not-allowed and reduced opacity'
+			description: 'Disables interaction and applies cursor-not-allowed with reduced opacity'
+		},
+		offLabel: {
+			control: 'text',
+			description: 'Optional label that sets the switch to off when clicked'
+		},
+		onLabel: {
+			control: 'text',
+			description: 'Optional label that sets the switch to on when clicked'
 		}
 	},
 	args: {
 		checked: false,
-		disabled: false
+		disabled: false,
+		offLabel: 'Off',
+		onLabel: 'On'
 	}
 } satisfies Meta<typeof SwitchStory>;
 

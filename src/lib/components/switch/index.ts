@@ -26,9 +26,30 @@ const switchThumbVariants = tv({
 	].join(' ')
 });
 
+const switchWrapperVariants = tv({
+	base: 'inline-flex items-center gap-2'
+});
+
+const switchLabelVariants = tv({
+	base: [
+		'font-body text-b font-normal text-grey-600 transition-colors outline-none',
+		'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-faded',
+		'disabled:cursor-not-allowed disabled:text-grey-300'
+	].join(' '),
+	variants: {
+		selected: {
+			true: 'font-semibold text-grey-700',
+			false: 'hover:text-primary-ultradark'
+		}
+	}
+});
+
 type SwitchComponentProps = {
 	checked?: boolean;
 	disabled?: boolean;
+	offLabel?: string | null;
+	onLabel?: string | null;
+	labelClass?: string | null;
 	class?: string | null;
 	customcn?: (...inputs: ClassValue[]) => string;
 	onCheckedChange?: (checked: boolean) => void;
@@ -37,4 +58,10 @@ type SwitchComponentProps = {
 export type SwitchProps = SwitchComponentProps &
 	Omit<SwitchPrimitive.RootProps, keyof SwitchComponentProps>;
 
-export { Switch, switchRootVariants, switchThumbVariants };
+export {
+	Switch,
+	switchRootVariants,
+	switchThumbVariants,
+	switchWrapperVariants,
+	switchLabelVariants
+};
