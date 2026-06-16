@@ -1,0 +1,24 @@
+<script lang="ts">
+	import type { SingularIcon } from '../index.js';
+	import { cn as defaultcn } from '../../../index.js';
+
+	type $$Props = SingularIcon;
+
+	let { customcn, class: className }: $$Props = $props();
+
+	const cn = $derived(customcn ?? defaultcn);
+</script>
+
+<svg
+	viewBox="0 0 24 24"
+	class={cn('size-6 shrink-0', className)}
+	xmlns="http://www.w3.org/2000/svg"
+	aria-hidden="true"
+>
+	<path
+		fill-rule="evenodd"
+		clip-rule="evenodd"
+		d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM11.009 7.97632C11.009 7.42902 11.4527 6.98535 12 6.98535C12.5473 6.98535 12.991 7.42902 12.991 7.97632V11.009H16.0236C16.5709 11.009 17.0146 11.4527 17.0146 12C17.0146 12.5473 16.5709 12.991 16.0236 12.991H12.991V16.0236C12.991 16.5709 12.5473 17.0146 12 17.0146C11.4527 17.0146 11.009 16.5709 11.009 16.0236V12.991H7.97632C7.42902 12.991 6.98535 12.5473 6.98535 12C6.98535 11.4527 7.42902 11.009 7.97632 11.009H11.009V7.97632Z"
+		fill="currentColor"
+	/>
+</svg>

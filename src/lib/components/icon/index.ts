@@ -26,6 +26,9 @@ import History from './regular/history.svelte';
 import KeyboardArrow from './regular/keyboard-arrow.svelte';
 import Filter from './regular/filter.svelte';
 
+export { copaIconNames } from './copa/index.js';
+export type { CopaIconName } from './copa/index.js';
+
 const Regular = { Close, Check, Walk, Camera, History, KeyboardArrow, Filter };
 
 const Filled = { Time, Ticket };

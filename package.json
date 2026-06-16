@@ -24,9 +24,49 @@
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
 		},
+		"./button-group": {
+			"types": "./dist/components/button-group/index.d.ts",
+			"svelte": "./dist/components/button-group/index.js"
+		},
 		"./typography": {
 			"types": "./dist/components/typography/index.d.ts",
 			"svelte": "./dist/components/typography/index.js"
+		},
+		"./pictograms": {
+			"types": "./dist/components/pictograms/index.d.ts",
+			"svelte": "./dist/components/pictograms/index.js"
+		},
+		"./pictograms/*.svelte": {
+			"types": "./dist/components/pictograms/*.svelte.d.ts",
+			"svelte": "./dist/components/pictograms/*.svelte"
+		},
+		"./icon": {
+			"types": "./dist/components/icon/index.d.ts",
+			"svelte": "./dist/components/icon/index.js"
+		},
+		"./icon/*.svelte": {
+			"types": "./dist/components/icon/*.svelte.d.ts",
+			"svelte": "./dist/components/icon/*.svelte"
+		},
+		"./icon/filled/*.svelte": {
+			"types": "./dist/components/icon/filled/*.svelte.d.ts",
+			"svelte": "./dist/components/icon/filled/*.svelte"
+		},
+		"./icon/regular/*.svelte": {
+			"types": "./dist/components/icon/regular/*.svelte.d.ts",
+			"svelte": "./dist/components/icon/regular/*.svelte"
+		},
+		"./icon/social/*.svelte": {
+			"types": "./dist/components/icon/social/*.svelte.d.ts",
+			"svelte": "./dist/components/icon/social/*.svelte"
+		},
+		"./icon/copa": {
+			"types": "./dist/components/icon/copa/index.d.ts",
+			"svelte": "./dist/components/icon/copa/index.js"
+		},
+		"./icon/copa/*.svelte": {
+			"types": "./dist/components/icon/copa/*.svelte.d.ts",
+			"svelte": "./dist/components/icon/copa/*.svelte"
 		}
 	},
 	"sideEffects": [

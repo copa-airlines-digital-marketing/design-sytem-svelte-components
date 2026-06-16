@@ -13,7 +13,17 @@ const meta = {
 	argTypes: {
 		pictogram: {
 			control: 'select',
-			options: ['AnunciosImportantes', 'CheckIn', 'Conexion'],
+			options: [
+				'AnunciosImportantes',
+				'AvionAterrizando',
+				'AvionDespegando',
+				'CheckIn',
+				'Conexion',
+				'Destinos',
+				'EstadoDelVuelo',
+				'PanamaStopover',
+				'VueloDomestico'
+			],
 			description: 'Which pictogram to display'
 		},
 		style: {
@@ -44,6 +54,30 @@ export const AnunciosImportantes: Story = {
 
 export const Conexion: Story = {
 	args: { pictogram: 'Conexion' }
+};
+
+export const Destinos: Story = {
+	args: { pictogram: 'Destinos' }
+};
+
+export const EstadoDelVuelo: Story = {
+	args: { pictogram: 'EstadoDelVuelo' }
+};
+
+export const PanamaStopover: Story = {
+	args: { pictogram: 'PanamaStopover' }
+};
+
+export const AvionAterrizando: Story = {
+	args: { pictogram: 'AvionAterrizando' }
+};
+
+export const AvionDespegando: Story = {
+	args: { pictogram: 'AvionDespegando' }
+};
+
+export const VueloDomestico: Story = {
+	args: { pictogram: 'VueloDomestico' }
 };
 
 export const Monochrome: Story = {
