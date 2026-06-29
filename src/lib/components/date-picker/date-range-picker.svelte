@@ -39,6 +39,7 @@
 		fixedWeeks = true,
 		preventDeselect = false,
 		displayOptions,
+		displayValue,
 		startName,
 		endName,
 		id,
@@ -48,6 +49,8 @@
 		minDays,
 		maxDays,
 		excludeDisabled = false,
+		highlightedRange,
+		popoverFooter,
 		onValueChange,
 		onStartValueChange,
 		onEndValueChange,
@@ -62,7 +65,8 @@
 	let triggerButton = $state<HTMLButtonElement | null>(null);
 	let completedRangeKey = $state('');
 
-	const generatedId = `date-range-${Math.random().toString(36).slice(2, 9)}`;
+	const componentId = $props.id();
+	const generatedId = `date-range-${componentId}`;
 	const triggerId = $derived(id ?? generatedId);
 	const formattedStart = $derived(formatDateValue(value.start, locale, displayOptions));
 	const formattedEnd = $derived(formatDateValue(value.end, locale, displayOptions));
@@ -73,6 +77,7 @@
 
 		return formattedStart || formattedEnd;
 	});
+	const displayText = $derived(displayValue || formattedRange);
 
 	$effect(() => {
 		const rangeKey =
@@ -164,9 +169,11 @@
 			</svg>
 
 			<span
-				class={cn(datePickerTriggerTextVariants({ hasValue: Boolean(formattedRange), disabled }))}
+				data-date-trigger-text="true"
+				data-has-value={Boolean(displayText)}
+				class={cn(datePickerTriggerTextVariants({ hasValue: Boolean(displayText), disabled }))}
 			>
-				{formattedRange || placeholder}
+				{displayText || placeholder}
 			</span>
 		</BitsDateRangePicker.Trigger>
 
@@ -188,15 +195,20 @@
 			side="bottom"
 			sideOffset={8}
 			avoidCollisions={true}
+			collisionPadding={16}
 			onCloseAutoFocus={handleCloseAutoFocus}
 			style="z-index: 50;"
 			class={cn(datePickerPopoverVariants({ range: true }))}
 		>
 			<BitsDateRangePicker.Calendar class={cn(datePickerCalendarVariants())}>
 				{#snippet children({ months, weekdays })}
-					<CalendarPanel mode="range" {months} {weekdays} {locale} {customcn} />
+					<CalendarPanel mode="range" {months} {weekdays} {locale} {customcn} {highlightedRange} />
 				{/snippet}
 			</BitsDateRangePicker.Calendar>
+
+			{#if popoverFooter}
+				{@render popoverFooter()}
+			{/if}
 		</BitsDateRangePicker.Content>
 	</BitsPortal>
 </BitsDateRangePicker.Root>

@@ -192,5 +192,5 @@ When the modal content is taller than 90dvh, the scrollable area (`flex-1 min-h-
 ## Accessibility
 
 - Built on `bits-ui` `Dialog` — includes `role="dialog"`, `aria-modal`, focus trap, and `Escape` to close.
-- `Dialog.Title` semantics are provided by the title span inside `ModalClose`.
+- `Dialog.Title` semantics are provided by the visible title inside `ModalClose`.
 - Focus returns to the trigger element when the modal closes.

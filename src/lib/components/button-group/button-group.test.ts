@@ -26,7 +26,7 @@ describe('ButtonGroup', () => {
 	test('matches idle and active chip styles', () => {
 		expect(buttonGroupChipVariants({ size: 'default', active: false })).toContain('h-10');
 		expect(buttonGroupChipVariants({ size: 'default', active: false })).toContain('text-[#666666]');
-		expect(buttonGroupChipVariants({ size: 'default', active: true })).toContain('text-[#0E68FF]');
+		expect(buttonGroupChipVariants({ size: 'default', active: true })).toContain('text-[#0032A0]');
 		expect(buttonGroupIndicatorVariants()).toContain('bg-[#D6E3FF]');
 		expect(buttonGroupIndicatorVariants()).toContain('transition-transform');
 		expect(buttonGroupIndicatorVariants()).toContain('outline-[#0E68FF]');

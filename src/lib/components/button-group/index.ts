@@ -41,7 +41,7 @@ export const buttonGroupChipVariants = tv({
 			large: 'h-12 px-3 py-4 text-d1 leading-5'
 		},
 		active: {
-			true: 'text-[#0E68FF]',
+			true: 'text-[#0032A0]',
 			false: 'bg-transparent text-[#666666] hover:bg-grey-50 hover:text-[#0E68FF]'
 		},
 		disabled: {

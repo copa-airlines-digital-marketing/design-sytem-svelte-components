@@ -56,6 +56,7 @@ type SliderComponentProps = {
 	step?: number;
 	disabled?: boolean;
 	label?: string;
+	ariaLabel?: string;
 	minLabel?: string;
 	maxLabel?: string;
 	showTooltip?: boolean;

@@ -80,7 +80,7 @@ const inputVariants = tv({
 	base: [
 		'flex-1 min-w-0 bg-transparent outline-none',
 		'font-body text-b text-grey-700',
-		'placeholder:text-grey-500',
+		'placeholder:text-grey-600',
 		'disabled:cursor-not-allowed disabled:text-grey-500'
 	].join(' ')
 });

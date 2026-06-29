@@ -7,19 +7,20 @@ import type {
 	DateValidator
 } from 'bits-ui';
 import type { ClassValue } from 'clsx';
+import type { Snippet } from 'svelte';
 import { tv } from '../../index.js';
 import DatePicker from './date-picker.svelte';
 import DateRangePicker from './date-range-picker.svelte';
 
 const datePickerPopoverVariants = tv({
 	base: [
-		'z-50 rounded-sm border border-grey-200 bg-common-white p-4',
+		'z-50 max-h-[min(calc(100dvh-2rem),var(--bits-floating-available-height))] overflow-y-auto rounded-sm border border-grey-200 bg-common-white p-4',
 		'shadow-[0px_12px_28px_rgba(0,0,0,0.12)] outline-none'
 	].join(' '),
 	variants: {
 		range: {
-			true: 'w-[20rem] max-w-[calc(100vw-2rem)] p-5 md:w-[40rem]',
-			false: 'w-[20rem] max-w-[calc(100vw-2rem)]'
+			true: 'w-[calc(100vw-2rem)] max-w-[calc(100vw-2rem)] p-4 sm:w-[20rem] sm:p-5 md:w-[40rem]',
+			false: 'w-[calc(100vw-2rem)] max-w-[20rem] sm:w-[20rem]'
 		}
 	},
 	defaultVariants: {
@@ -82,7 +83,7 @@ const datePickerTriggerTextVariants = tv({
 		{
 			hasValue: false,
 			disabled: false,
-			class: 'text-grey-500'
+			class: 'text-grey-600'
 		},
 		{
 			disabled: true,
@@ -145,6 +146,7 @@ const dateRangeDayVariants = tv({
 		'group flex h-12 w-full items-center justify-center font-body text-d1 text-grey-800',
 		'outline-none transition-colors hover:bg-[#F1F6FF] focus-visible:bg-[#F1F6FF]',
 		'data-[highlighted]:bg-[#F1F6FF] data-[range-middle]:bg-[#F1F6FF]',
+		'data-[highlighted-range]:!bg-grey-100 data-[highlighted-range]:hover:!bg-grey-200',
 		'data-[selection-start]:bg-[linear-gradient(90deg,rgb(255_255_255)_50%,rgb(241_246_255)_50%)]',
 		'data-[selection-end]:bg-[linear-gradient(90deg,rgb(241_246_255)_50%,rgb(255_255_255)_50%)]',
 		'data-[range-start]:bg-[linear-gradient(90deg,rgb(255_255_255)_50%,rgb(241_246_255)_50%)]',
@@ -187,8 +189,10 @@ type DatePickerSharedProps = {
 	fixedWeeks?: boolean;
 	preventDeselect?: boolean;
 	displayOptions?: Intl.DateTimeFormatOptions;
+	displayValue?: string;
 	class?: string | null;
 	customcn?: (...inputs: ClassValue[]) => string;
+	popoverFooter?: Snippet;
 };
 
 type DatePickerProps = DatePickerSharedProps & {
@@ -214,6 +218,7 @@ type DateRangePickerProps = DatePickerSharedProps & {
 	minDays?: number;
 	maxDays?: number;
 	excludeDisabled?: boolean;
+	highlightedRange?: DateRange;
 	onValueChange?: (value: DateRange) => void;
 	onStartValueChange?: (value: DateValue | undefined) => void;
 	onEndValueChange?: (value: DateValue | undefined) => void;

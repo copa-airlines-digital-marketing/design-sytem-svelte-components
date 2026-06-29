@@ -24,6 +24,9 @@ const autocompleteItemVariants = tv({
 type AutocompleteOption = {
 	value: string;
 	label: string;
+	primaryLabel?: string;
+	emphasisLabel?: string;
+	secondaryLabel?: string;
 	disabled?: boolean;
 };
 
@@ -45,6 +48,8 @@ type AutocompleteProps = {
 	options?: AutocompleteOption[];
 	/** Message shown when no options match the current search. Default: "Sin resultados." */
 	emptyMessage?: string;
+	/** Accessible label for the clear selected option button. */
+	clearSelectionLabel?: string;
 	/** HTML name forwarded to the hidden input for form submission. */
 	name?: string;
 	/** Called whenever the selected value changes. */

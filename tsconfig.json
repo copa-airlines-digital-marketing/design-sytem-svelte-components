@@ -1,5 +1,6 @@
 {
-	"exclude": ["node_modules", "vitest.config.ts", "tailwind-presets", "storybook-static"],
+	"extends": "./.svelte-kit/tsconfig.json",
+	"exclude": ["node_modules", "vitest.config.ts", "tailwind-presets", "storybook-static", "dist"],
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,

@@ -1,4 +1,4 @@
-import type { HTMLButtonAttributes } from 'svelte/elements';
+import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 import type { Snippet } from 'svelte';
 import { type VariantProps } from 'tailwind-variants';
 import { tv } from '../../index.js';
@@ -51,10 +51,17 @@ type ButtonComponentProps = {
 	children?: Snippet;
 };
 
+type LinkProps = Pick<HTMLAnchorAttributes, 'href' | 'target' | 'rel'>;
+
 /** Props = our props + button element rest; destructuring our props leaves restProps correctly typed for ButtonPrimitive.Root */
-export type Props = ButtonComponentProps & Omit<HTMLButtonAttributes, keyof ButtonComponentProps>;
+export type Props = ButtonComponentProps &
+	LinkProps &
+	Omit<HTMLButtonAttributes, keyof ButtonComponentProps | keyof LinkProps>;
 
 export type ButtonProps = Props;
+export type ButtonEvents = {
+	click: MouseEvent;
+};
 
 export { default as Button } from './button.svelte';
 export { buttonVariants };

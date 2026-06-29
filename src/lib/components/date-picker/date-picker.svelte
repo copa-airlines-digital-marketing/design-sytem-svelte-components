@@ -37,11 +37,13 @@
 		fixedWeeks = true,
 		preventDeselect = false,
 		displayOptions,
+		displayValue,
 		name,
 		id,
 		onValueChange,
 		validate,
 		closeOnDateSelect = true,
+		popoverFooter,
 		class: className,
 		customcn
 	}: DatePickerProps = $props();
@@ -50,9 +52,11 @@
 
 	let open = $state(false);
 
-	const generatedId = `date-picker-${Math.random().toString(36).slice(2, 9)}`;
+	const componentId = $props.id();
+	const generatedId = `date-picker-${componentId}`;
 	const triggerId = $derived(id ?? generatedId);
 	const formattedValue = $derived(formatDateValue(value, locale, displayOptions));
+	const displayText = $derived(displayValue || formattedValue);
 </script>
 
 <BitsDatePicker.Root
@@ -113,9 +117,11 @@
 			</svg>
 
 			<span
-				class={cn(datePickerTriggerTextVariants({ hasValue: Boolean(formattedValue), disabled }))}
+				data-date-trigger-text="true"
+				data-has-value={Boolean(displayText)}
+				class={cn(datePickerTriggerTextVariants({ hasValue: Boolean(displayText), disabled }))}
 			>
-				{formattedValue || placeholder}
+				{displayText || placeholder}
 			</span>
 		</BitsDatePicker.Trigger>
 
@@ -133,6 +139,7 @@
 			side="bottom"
 			sideOffset={8}
 			avoidCollisions={true}
+			collisionPadding={16}
 			style="z-index: 50;"
 			class={cn(datePickerPopoverVariants())}
 		>
@@ -141,6 +148,10 @@
 					<CalendarPanel mode="single" {months} {weekdays} {locale} {customcn} />
 				{/snippet}
 			</BitsDatePicker.Calendar>
+
+			{#if popoverFooter}
+				{@render popoverFooter()}
+			{/if}
 		</BitsDatePicker.Content>
 	</BitsDatePicker.Portal>
 </BitsDatePicker.Root>

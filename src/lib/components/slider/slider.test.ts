@@ -1,4 +1,7 @@
 import { vi, describe, test, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 vi.mock('./slider.svelte', () => ({ default: {} }));
 vi.mock('bits-ui', () => ({ Slider: {} }));
@@ -11,6 +14,9 @@ import {
 	sliderTooltipVariants,
 	sliderLabelVariants
 } from './index.js';
+
+const currentDir = dirname(fileURLToPath(import.meta.url));
+const sliderSource = readFileSync(join(currentDir, 'slider.svelte'), 'utf8');
 
 describe('sliderRootVariants', () => {
 	test('base classes are always present', () => {
@@ -66,6 +72,12 @@ describe('sliderThumbVariants', () => {
 	test('has grab cursor', () => {
 		const cls = sliderThumbVariants();
 		expect(cls).toContain('cursor-grab');
+	});
+});
+
+describe('slider accessibility contract', () => {
+	test('names the thumb from ariaLabel or label', () => {
+		expect(sliderSource).toContain('aria-label={ariaLabel ?? label}');
 	});
 });
 

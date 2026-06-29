@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { DateValue } from '@internationalized/date';
 	import { DatePicker as BitsDatePicker, DateRangePicker as BitsDateRangePicker } from 'bits-ui';
-	import type { Month } from 'bits-ui';
+	import type { DateRange, Month } from 'bits-ui';
 	import type { ClassValue } from 'clsx';
 	import { cn as defaultCn } from '../../index.js';
 	import KeyboardArrow from '../icon/regular/keyboard-arrow.svelte';
@@ -30,12 +30,31 @@
 		weekdays: string[];
 		locale?: string;
 		customcn?: (...inputs: ClassValue[]) => string;
+		highlightedRange?: DateRange;
 	};
 
-	let { mode = 'single', months, weekdays, locale = 'es-PA', customcn }: Props = $props();
+	let {
+		mode = 'single',
+		months,
+		weekdays,
+		locale = 'es-PA',
+		customcn,
+		highlightedRange
+	}: Props = $props();
 
 	const cn = $derived(customcn ?? defaultCn);
 	const isRange = $derived(mode === 'range');
+
+	function isDateInHighlightedRange(date: DateValue) {
+		if (!highlightedRange?.start || !highlightedRange?.end) return false;
+
+		const dateKey = date.toString();
+		const startKey = highlightedRange.start.toString();
+		const endKey = highlightedRange.end.toString();
+		const [rangeStart, rangeEnd] = startKey <= endKey ? [startKey, endKey] : [endKey, startKey];
+
+		return dateKey >= rangeStart && dateKey <= rangeEnd;
+	}
 </script>
 
 {#if isRange}
@@ -88,7 +107,10 @@
 										month={month.value}
 										class={cn(datePickerCellVariants())}
 									>
-										<BitsDateRangePicker.Day class={cn(dateRangeDayVariants())}>
+										<BitsDateRangePicker.Day
+											data-highlighted-range={isDateInHighlightedRange(date) ? '' : undefined}
+											class={cn(dateRangeDayVariants())}
+										>
 											{#snippet children({ day })}
 												<span class={cn(dateRangeDayLabelVariants())}>{day}</span>
 											{/snippet}

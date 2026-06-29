@@ -35,6 +35,7 @@
 	const currentValue = $derived(clampCounterValue(value, min, max));
 	const decrementDisabled = $derived(disabled || currentValue <= min);
 	const incrementDisabled = $derived(disabled || currentValue >= max);
+	let focusedAction = $state<CounterAction | null>(null);
 
 	function setValue(nextValue: number) {
 		if (disabled) return;
@@ -49,16 +50,24 @@
 	function updateValue(direction: CounterAction) {
 		setValue(getCounterNextValue(currentValue, direction, step));
 	}
+
+	function clearFocusedAction(action: CounterAction) {
+		if (focusedAction === action) focusedAction = null;
+	}
 </script>
 
-{#snippet counterIcon(action: CounterAction)}
+{#snippet counterIcon(action: CounterAction, focused = false)}
 	<svg
 		viewBox="0 0 28 28"
 		class="pointer-events-none absolute -inset-0.5 size-7 fill-current"
 		aria-hidden="true"
 		xmlns="http://www.w3.org/2000/svg"
 	>
-		<g class="group-focus-visible:hidden group-active:hidden">
+		<g
+			class={focused
+				? 'hidden group-active:hidden'
+				: 'group-focus-visible:hidden group-active:hidden'}
+		>
 			{#if action === 'decrement'}
 				<g transform="translate(2 2)">
 					<path
@@ -76,7 +85,11 @@
 			{/if}
 		</g>
 
-		<g class="hidden group-focus-visible:block group-active:hidden">
+		<g
+			class={focused
+				? 'block group-active:hidden'
+				: 'hidden group-focus-visible:block group-active:hidden'}
+		>
 			<rect
 				x="1"
 				y="1"
@@ -144,8 +157,10 @@
 		aria-label={decrementAriaLabel}
 		class={cn(counterButtonVariants({ error }), buttonClass)}
 		onclick={() => updateValue('decrement')}
+		onfocus={() => (focusedAction = 'decrement')}
+		onblur={() => clearFocusedAction('decrement')}
 	>
-		{@render counterIcon('decrement')}
+		{@render counterIcon('decrement', focusedAction === 'decrement')}
 	</ButtonPrimitive.Root>
 
 	<span
@@ -162,7 +177,9 @@
 		aria-label={incrementAriaLabel}
 		class={cn(counterButtonVariants({ error }), buttonClass)}
 		onclick={() => updateValue('increment')}
+		onfocus={() => (focusedAction = 'increment')}
+		onblur={() => clearFocusedAction('increment')}
 	>
-		{@render counterIcon('increment')}
+		{@render counterIcon('increment', focusedAction === 'increment')}
 	</ButtonPrimitive.Root>
 </div>

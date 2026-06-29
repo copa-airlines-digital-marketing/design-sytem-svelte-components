@@ -39,9 +39,9 @@ describe('inputVariants', () => {
 		expect(cls).toContain('text-grey-700');
 	});
 
-	test('placeholder text is grey-500', () => {
+	test('placeholder text meets contrast on white', () => {
 		const cls = inputVariants();
-		expect(cls).toContain('placeholder:text-grey-500');
+		expect(cls).toContain('placeholder:text-grey-600');
 	});
 
 	test('disabled cursor and muted text', () => {
