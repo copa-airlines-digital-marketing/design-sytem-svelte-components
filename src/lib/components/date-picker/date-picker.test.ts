@@ -1,6 +1,8 @@
 import { parseDate } from '@internationalized/date';
 import { describe, expect, test, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 vi.mock('./date-picker.svelte', () => ({ default: {} }));
 vi.mock('./date-range-picker.svelte', () => ({ default: {} }));
@@ -18,14 +20,18 @@ import {
 	formatDateValue
 } from './index.js';
 
-const rangeSource = readFileSync(
-	'src/lib/components/date-picker/date-range-picker.svelte',
-	'utf-8'
-);
+const testDir = dirname(fileURLToPath(import.meta.url));
+const dateSource = readFileSync(join(testDir, 'date-picker.svelte'), 'utf-8');
+const rangeSource = readFileSync(join(testDir, 'date-range-picker.svelte'), 'utf-8');
+const calendarPanelSource = readFileSync(join(testDir, 'calendar-panel.svelte'), 'utf-8');
 
 describe('date picker variants', () => {
 	test('popover supports single and range widths', () => {
-		expect(datePickerPopoverVariants()).toContain('w-[20rem]');
+		expect(datePickerPopoverVariants()).toContain(
+			'max-h-[min(calc(100dvh-2rem),var(--bits-floating-available-height))]'
+		);
+		expect(datePickerPopoverVariants()).toContain('sm:w-[20rem]');
+		expect(datePickerPopoverVariants({ range: true })).toContain('w-[calc(100vw-2rem)]');
 		expect(datePickerPopoverVariants({ range: true })).toContain('md:w-[40rem]');
 	});
 
@@ -40,7 +46,7 @@ describe('date picker variants', () => {
 		expect(datePickerTriggerIconVariants()).toContain('text-grey-400');
 		expect(datePickerTriggerIconVariants({ disabled: true })).toContain('text-grey-500');
 		expect(datePickerTriggerTextVariants({ hasValue: true })).toContain('text-grey-700');
-		expect(datePickerTriggerTextVariants({ hasValue: false })).toContain('text-grey-500');
+		expect(datePickerTriggerTextVariants({ hasValue: false })).toContain('text-grey-600');
 		expect(datePickerTriggerTextVariants({ hasValue: true, disabled: true })).toContain(
 			'text-grey-500'
 		);
@@ -60,6 +66,7 @@ describe('date picker variants', () => {
 	test('range day styles middle and endpoints', () => {
 		const cls = dateRangeDayVariants();
 		expect(cls).toContain('data-[range-middle]:bg-[#F1F6FF]');
+		expect(cls).toContain('data-[highlighted-range]:!bg-grey-100');
 		expect(cls).toContain(
 			'data-[selection-start]:bg-[linear-gradient(90deg,rgb(255_255_255)_50%,rgb(241_246_255)_50%)]'
 		);
@@ -70,6 +77,7 @@ describe('date picker variants', () => {
 
 	test('range day label creates the selected blue circle', () => {
 		const cls = dateRangeDayLabelVariants();
+		expect(cls).not.toContain('group-data-[highlighted-range]:text-[#007A3D]');
 		expect(cls).toContain('group-data-[selection-start]:bg-[#126BFF]');
 		expect(cls).toContain('group-data-[selection-end]:bg-[#126BFF]');
 		expect(cls).toContain('group-data-[selection-start]:!text-common-white');
@@ -104,5 +112,29 @@ describe('DateRangePicker source structure', () => {
 		expect(rangeSource).toContain('<BitsPortal');
 		expect(rangeSource).toContain('<BitsDateRangePicker.Content');
 		expect(rangeSource).toContain('<BitsDateRangePicker.Calendar');
+	});
+
+	test('passes an optional highlighted range to the calendar panel', () => {
+		expect(rangeSource).toContain('highlightedRange');
+		expect(calendarPanelSource).toContain('isDateInHighlightedRange');
+		expect(calendarPanelSource).toContain('data-highlighted-range');
+	});
+
+	test('renders optional popover footer content inside picker content', () => {
+		expect(dateSource).toContain('popoverFooter');
+		expect(dateSource).toContain('{@render popoverFooter()}');
+		expect(rangeSource).toContain('popoverFooter');
+		expect(rangeSource).toContain('{@render popoverFooter()}');
+	});
+
+	test('allows callers to override trigger display text', () => {
+		expect(dateSource).toContain('displayValue');
+		expect(dateSource).toContain('const displayText');
+		expect(dateSource).toContain('data-date-trigger-text="true"');
+		expect(dateSource).toContain('{displayText || placeholder}');
+		expect(rangeSource).toContain('displayValue');
+		expect(rangeSource).toContain('const displayText');
+		expect(rangeSource).toContain('data-date-trigger-text="true"');
+		expect(rangeSource).toContain('{displayText || placeholder}');
 	});
 });

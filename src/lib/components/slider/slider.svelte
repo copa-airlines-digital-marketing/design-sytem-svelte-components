@@ -17,6 +17,7 @@
 		step = 1,
 		disabled = false,
 		label,
+		ariaLabel,
 		minLabel,
 		maxLabel,
 		showTooltip = true,
@@ -74,7 +75,11 @@
 				<SliderPrimitive.Range class={cn(sliderRangeVariants())} />
 
 				{#each thumbItems as thumb (thumb.index)}
-					<SliderPrimitive.Thumb index={thumb.index} class={cn(sliderThumbVariants())} />
+					<SliderPrimitive.Thumb
+						index={thumb.index}
+						aria-label={ariaLabel ?? label}
+						class={cn(sliderThumbVariants())}
+					/>
 				{/each}
 			{/snippet}
 		</SliderPrimitive.Root>

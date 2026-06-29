@@ -23,6 +23,7 @@
 		disabled = false,
 		options = [],
 		emptyMessage = 'Sin resultados.',
+		clearSelectionLabel = 'Limpiar selección',
 		name,
 		onValueChange,
 		leftIcon,
@@ -44,12 +45,20 @@
 	// native <input> that Combobox.Input anchors to by default.
 	let fieldBoxEl = $state<HTMLDivElement | null>(null);
 
-	const generatedId = `autocomplete-${Math.random().toString(36).slice(2, 9)}`;
+	const componentId = $props.id();
+	const generatedId = `autocomplete-${componentId}`;
 	const inputId = $derived(id ?? generatedId);
 
 	// Full items array for bits-ui typeahead + label lookup after selection
 	const selectItems = $derived(
-		options.map((o) => ({ value: o.value, label: o.label, disabled: o.disabled }))
+		options.map((o) => ({
+			value: o.value,
+			label: o.label,
+			disabled: o.disabled,
+			primaryLabel: o.primaryLabel,
+			emphasisLabel: o.emphasisLabel,
+			secondaryLabel: o.secondaryLabel
+		}))
 	);
 
 	// Filter options in real-time as the user types
@@ -65,6 +74,15 @@
 	// Keep bits-ui's internal inputValue in sync with our searchText via oninput
 	function handleInput(e: Event) {
 		searchText = (e.currentTarget as HTMLInputElement).value;
+	}
+
+	function handleFocus() {
+		if (disabled) return;
+		window.setTimeout(() => {
+			if (disabled || !inputRef || !fieldBoxEl?.contains(document.activeElement)) return;
+			inputRef.dispatchEvent(new InputEvent('input', { bubbles: true }));
+			open = true;
+		}, 0);
 	}
 
 	// When an item is selected, clear the filter text so the next open shows all options
@@ -93,9 +111,8 @@
 	Key differences from Select:
 	  • Combobox.Input renders a native <input> (not a <button>) — the user
 	    types to filter options in real-time.
-	  • Combobox.Input is also the FloatingLayer.Anchor, so the dropdown is
-	    positioned relative to the input element.
-	    `min-width: var(--bits-floating-anchor-width)` keeps the dropdown ≈ input width.
+	  • Combobox.Content uses the full field box as its custom anchor.
+	    `width: var(--bits-floating-anchor-width)` keeps the dropdown stable in X.
 	  • searchText is tracked via oninput (inputValue on Combobox.Root is not $bindable).
 	  • When an item is selected, bits-ui sets the input's value to the item label
 	    (via mergedProps); our handleValueChange clears searchText so the next open
@@ -141,6 +158,7 @@
 				{placeholder}
 				{disabled}
 				bind:ref={inputRef}
+				onfocus={handleFocus}
 				oninput={handleInput}
 				class={cn(inputVariants())}
 			/>
@@ -152,7 +170,7 @@
 					onclick={clearSelection}
 					{disabled}
 					class="shrink-0 text-grey-400 transition-colors hover:text-grey-700"
-					aria-label="Limpiar selección"
+					aria-label={clearSelectionLabel}
 				>
 					<Close class="size-5" />
 				</button>
@@ -178,7 +196,7 @@
 			sideOffset={8}
 			avoidCollisions={true}
 			customAnchor={fieldBoxEl}
-			style="min-width: var(--bits-floating-anchor-width); z-index: 50;"
+			style="width: var(--bits-floating-anchor-width); min-width: var(--bits-floating-anchor-width); z-index: 50;"
 			class="overflow-hidden rounded border border-grey-300 bg-common-white shadow-[0px_3px_5px_rgba(0,0,0,0.17)]"
 		>
 			<ScrollArea.Root class="relative flex flex-col">
@@ -196,7 +214,35 @@
 								class={cn(autocompleteItemVariants())}
 							>
 								{#snippet children({ selected })}
-									<span class={cn(optionLabelVariants())}>{option.label}</span>
+									{#if option.primaryLabel || option.emphasisLabel || option.secondaryLabel}
+										<span class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+											<span
+												class={cn(
+													optionLabelVariants(),
+													'w-full min-w-0 whitespace-normal break-words'
+												)}
+											>
+												{option.primaryLabel || option.label}
+											</span>
+
+											{#if option.secondaryLabel || option.emphasisLabel}
+												<span
+													class="w-full min-w-0 whitespace-normal break-words font-body text-d1 text-grey-500"
+												>
+													{#if option.secondaryLabel && option.emphasisLabel}
+														{option.secondaryLabel} ({option.emphasisLabel})
+													{:else if option.secondaryLabel}
+														{option.secondaryLabel}
+													{:else if option.emphasisLabel}
+														{option.emphasisLabel}
+													{/if}
+												</span>
+											{/if}
+										</span>
+									{:else}
+										<span class={cn(optionLabelVariants(), 'min-w-0 truncate')}>{option.label}</span
+										>
+									{/if}
 
 									{#if selected}
 										<svg

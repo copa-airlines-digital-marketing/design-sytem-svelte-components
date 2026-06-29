@@ -10,6 +10,7 @@
 
 	let {
 		title,
+		closeLabel = 'Close',
 		titleSize = 'default',
 		onClose,
 		class: className,
@@ -21,7 +22,7 @@
 
 <div class={cn(modalCloseRootVariants({ titleSize }), className)}>
 	{#if title}
-		<span class={modalCloseTitleVariants({ titleSize })}>{title}</span>
+		<Dialog.Title class={modalCloseTitleVariants({ titleSize })}>{title}</Dialog.Title>
 	{/if}
 	<Dialog.Close class={modalCloseBtnVariants()} onclick={onClose}>
 		<svg
@@ -37,6 +38,6 @@
 				fill="currentColor"
 			/>
 		</svg>
-		<span class="sr-only">Close</span>
+		<span class="sr-only">{closeLabel}</span>
 	</Dialog.Close>
 </div>

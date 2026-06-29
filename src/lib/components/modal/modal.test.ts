@@ -1,4 +1,7 @@
 import { vi, describe, test, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 vi.mock('./modal.svelte', () => ({ default: {} }));
 vi.mock('./modal-close.svelte', () => ({ default: {} }));
@@ -14,6 +17,10 @@ import {
 	modalActionBarDividerVariants,
 	modalActionBarActionsVariants
 } from './index.js';
+
+const currentDir = dirname(fileURLToPath(import.meta.url));
+const modalSource = readFileSync(join(currentDir, 'modal.svelte'), 'utf8');
+const modalCloseSource = readFileSync(join(currentDir, 'modal-close.svelte'), 'utf8');
 
 describe('modalOverlayVariants', () => {
 	test('has fixed full-screen classes', () => {
@@ -59,6 +66,13 @@ describe('modalContentVariants', () => {
 		const cls = modalContentVariants({ breakpoint: 'xsmall' });
 		expect(cls).toContain('bottom-0');
 		expect(cls).toContain('w-full');
+	});
+});
+
+describe('modal accessibility contract', () => {
+	test('names the dialog from the provided title', () => {
+		expect(modalSource).toContain('aria-label={title}');
+		expect(modalCloseSource).toContain('<Dialog.Title');
 	});
 });
 

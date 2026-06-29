@@ -101,6 +101,7 @@ export type ModalProps = {
 	open?: boolean;
 	onClose?: () => void;
 	title?: string;
+	closeLabel?: string;
 	titleSize?: ModalTitleSize;
 	size?: ModalSize;
 	breakpoint?: ModalBreakpoint;
@@ -118,6 +119,7 @@ export type ModalProps = {
 
 export type ModalCloseProps = {
 	title?: string;
+	closeLabel?: string;
 	titleSize?: ModalTitleSize;
 	onClose?: () => void;
 	class?: string | null;

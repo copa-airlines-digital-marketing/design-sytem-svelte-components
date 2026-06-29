@@ -29,7 +29,8 @@
 	const cn = $derived(customcn ?? defaultCn);
 
 	// Generate a stable id so <label for=…> works even when the caller doesn't provide one.
-	const generatedId = `input-${Math.random().toString(36).slice(2, 9)}`;
+	const componentId = $props.id();
+	const generatedId = `input-${componentId}`;
 	const inputId = $derived(id ?? generatedId);
 </script>
 

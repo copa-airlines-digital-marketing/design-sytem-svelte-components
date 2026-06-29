@@ -31,7 +31,8 @@
 	let open = $state(false);
 
 	// Generate a stable id so <label for=…> works even when caller doesn't provide one
-	const generatedId = `select-${Math.random().toString(36).slice(2, 9)}`;
+	const componentId = $props.id();
+	const generatedId = `select-${componentId}`;
 	const triggerId = $derived(id ?? generatedId);
 
 	// Derived selected label for display in the trigger

@@ -10,6 +10,7 @@
 		open = $bindable(false),
 		onClose,
 		title,
+		closeLabel = 'Close',
 		titleSize = 'default',
 		size = 'normal',
 		breakpoint = 'default',
@@ -42,8 +43,11 @@
 >
 	<Dialog.Portal>
 		<Dialog.Overlay class={cn(modalOverlayVariants())} />
-		<Dialog.Content class={cn(modalContentVariants({ size, breakpoint }), className)}>
-			<ModalClose {title} {titleSize} onClose={handleClose} />
+		<Dialog.Content
+			class={cn(modalContentVariants({ size, breakpoint }), className)}
+			aria-label={title}
+		>
+			<ModalClose {title} {closeLabel} {titleSize} onClose={handleClose} />
 
 			<div class="min-h-0 flex-1 overflow-y-auto px-14 pb-4">
 				{@render children?.()}

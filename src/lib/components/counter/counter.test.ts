@@ -93,4 +93,11 @@ describe('Counter source structure', () => {
 		expect(source).toContain("updateValue('decrement')");
 		expect(source).toContain("updateValue('increment')");
 	});
+
+	test('shows focus artwork for the focused control', () => {
+		expect(source).toContain('let focusedAction');
+		expect(source).toContain("onfocus={() => (focusedAction = 'increment')}");
+		expect(source).toContain("onblur={() => clearFocusedAction('increment')}");
+		expect(source).toContain("focusedAction === 'increment'");
+	});
 });
